@@ -5,6 +5,11 @@ import Info from 'lucide-react/dist/esm/icons/info';
 import Layers from 'lucide-react/dist/esm/icons/layers';
 import UserPlus from 'lucide-react/dist/esm/icons/user-plus';
 
+// Canonical/OG URLs need one absolute origin. This assumes the eventual production
+// domain (it already matches the contact email and WhatsApp-facing identity); update it
+// here once a custom domain is actually pointed at the deployment.
+export const SITE_URL = 'https://ekasolution.com';
+
 export const PAGES = [
   {
     path: '/',

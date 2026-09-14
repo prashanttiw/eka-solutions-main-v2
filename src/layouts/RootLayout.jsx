@@ -5,7 +5,7 @@ import CustomCursor from '../components/CustomCursor';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import WhatsAppFloat from '../components/WhatsAppFloat';
-import { pageByPath } from '../site';
+import { pageByPath, SITE_URL } from '../site';
 import { startAnalytics, trackPageview } from '../lib/analytics';
 import { API_ENABLED, api } from '../lib/api';
 
@@ -144,6 +144,9 @@ export default function RootLayout() {
     if (meta) meta.setAttribute('content', fallbackDescription);
     document.querySelector('meta[property="og:title"]')?.setAttribute('content', fallbackTitle);
     document.querySelector('meta[property="og:description"]')?.setAttribute('content', fallbackDescription);
+    const canonicalUrl = `${SITE_URL}${pathname === '/' ? '' : pathname}`;
+    document.querySelector('link[rel="canonical"]')?.setAttribute('href', canonicalUrl);
+    document.querySelector('meta[property="og:url"]')?.setAttribute('content', canonicalUrl);
 
     if (!API_ENABLED) return undefined;
 
