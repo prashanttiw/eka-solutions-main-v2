@@ -1,10 +1,16 @@
-# EKA Solution
+# EKA Solution (v2 — lightweight fork)
+
+Forked from [eka-solutions-main](https://github.com/prashanttiw/eka-solutions-main) to
+ship a faster build. The Three.js hero globe (~150KB gzip, the single heaviest thing on
+the page) was removed here — the hero was already designed to read on its graded
+background alone without it. Everything else is unchanged. The original, with the globe,
+stays preserved in `eka-solutions-main`.
 
 The marketing site for EKA Solution — a software engineering company that runs two
 tracks: client platforms (product and platform engineering, AI systems, cloud
 reliability, product design) and three products we operate ourselves.
 
-Multi-page. React 19 on Vite 8, React Router 7, Tailwind v4, Three.js for the hero globe.
+Multi-page. React 19 on Vite 8, React Router 7, Tailwind v4.
 
 ## Running it
 

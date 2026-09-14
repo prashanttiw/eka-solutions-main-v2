@@ -1,16 +1,14 @@
-import React, { Suspense, lazy, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import ArrowUpRight from 'lucide-react/dist/esm/icons/arrow-up-right';
 import HeroCodeTrace from './HeroCodeTrace';
 import HeroStarField from './HeroStarField';
 import { onScroll } from '../lib/scrollDriver';
 
-// The globe pulls in Three.js, which is far and away the heaviest thing on the page. Split
-// out so it never sits on the critical path: the copy, the type and the fold render from the
-// main bundle while the WebGL chunk streams in behind the preloader. Nothing below depends
-// on it, and the panel is designed to read on its graded background alone if it never
-// arrives — a device that refuses a GL context gets the night field, not a hole.
-const HeroParticleGlobe = lazy(() => import('./HeroParticleGlobe'));
+// v2 (lightweight fork): the Three.js particle globe was the single heaviest thing on the
+// page (~150KB gzip, the whole `three` dependency) and was removed here to keep this build
+// fast to ship. The panel was already designed to read on its graded background alone if the
+// globe never arrives, so nothing else changes. The full globe still lives in eka-solutions-main.
 
 /**
  * The night field: the one dark panel on the site, and the one place it takes colour.
@@ -155,10 +153,6 @@ export default function Hero({ ready = true }) {
     >
       <div className="hero-night hero-stage sticky top-0 flex h-[100svh] items-center overflow-hidden pt-24 pb-28">
       <HeroStarField />
-      {/* Sparking globe, centred behind the copy */}
-      <Suspense fallback={null}>
-        <HeroParticleGlobe progressRef={progressRef} />
-      </Suspense>
 
       {/* Atmospheric globe glow — the large blue bloom behind the sphere */}
       <div aria-hidden="true" className="hero-globe-glow" />

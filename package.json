@@ -1,5 +1,5 @@
 {
-  "name": "eka-solutions-main",
+  "name": "eka-solutions-main-v2",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -16,8 +16,7 @@
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-router-dom": "^7.18.3",
-    "tailwind-merge": "^3.6.0",
-    "three": "^0.185.1"
+    "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.3",
