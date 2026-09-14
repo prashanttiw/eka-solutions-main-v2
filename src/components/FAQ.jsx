@@ -50,6 +50,14 @@ const QUESTIONS = [
     q: 'How do I send a project enquiry?',
     a: 'Use the project brief on this page to prepare an email, then review and send it in your email app. You can also email us directly or start a conversation on WhatsApp.',
   },
+  {
+    q: 'Do you work with early-stage teams, or only established companies?',
+    a: 'Both. The conversation is the same either way: what you are trying to prove, what stage the business is at, and what scope actually fits it right now. We will say so if a smaller first step makes more sense than the one you came in asking for.',
+  },
+  {
+    q: 'Will you sign an NDA before we discuss anything specific?',
+    a: 'Yes. Send your standard NDA, or ask for ours, before the first detailed conversation. Confidentiality of what you share with us is not conditional on signing a project agreement afterward.',
+  },
 ];
 
 const mapQuestion = (entry) => ({
