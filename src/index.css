@@ -172,6 +172,13 @@ body {
    which is what a two-stop gradient does — turns the whole panel a flat slate
    and leaves the globe nothing to glow into.
    --------------------------------------------------------------------------- */
+.hero-simple {
+  color: var(--hero-ink-text);
+  background:
+    radial-gradient(ellipse 55% 65% at 50% 48%, rgba(52, 63, 111, 0.14), transparent 78%),
+    linear-gradient(180deg, #030405 0%, #050609 54%, #111834 100%);
+}
+
 .hero-scroll {
   height: 320svh;
   background: #000;
@@ -679,12 +686,8 @@ body {
 
 /* Frosted/elevated surfaces — replace the old dark glassmorphism classes */
 .nav-capsule {
-  background: rgba(247, 246, 241, 0.85);
-  /* A fixed element blurring everything scrolling under it is one of the most GPU-costly
-     things a phone can do every frame. 8px reads the same as frosted glass at the capsule's
-     actual on-screen size and is far cheaper to keep recomputing than the original 20px. */
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  /* An opaque capsule avoids continuously re-blurring the content underneath while scrolling. */
+  background: var(--bg-canvas);
   border: 1px solid var(--border-hairline);
   box-shadow: 0 8px 24px -8px rgba(27, 34, 82, 0.14);
 }
@@ -702,9 +705,7 @@ body {
 }
 
 .chip-elevated {
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: var(--bg-raised);
   border: 1px solid var(--border-hairline);
   box-shadow: 0 8px 24px -8px rgba(27, 34, 82, 0.14);
 }
@@ -804,6 +805,16 @@ body {
   inset: 0;
   z-index: 0;
   pointer-events: none;
+}
+
+/* The original paper texture stacked five SVG turbulence filters over the entire document
+   and every paper section. V2 uses the same canvas colour without that continuous blending
+   work, especially important on integrated Windows graphics. */
+.paper-base::after,
+.paper::after,
+.section-dark::after,
+.editorial-masthead::after {
+  display: none;
 }
 
 /* The masthead paints its own ivory, so it needs a positioning context for the

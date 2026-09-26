@@ -1,7 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import Preloader from '../components/Preloader';
-import CustomCursor from '../components/CustomCursor';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import WhatsAppFloat from '../components/WhatsAppFloat';
@@ -29,9 +27,6 @@ export default function RootLayout() {
      field would otherwise flash in half-built. Nothing else on the site has that problem —
      so someone who arrives on /careers from a job board, or on /work from a link, gets the
      page rather than three seconds of somebody else's brand animation. */
-  const [loadingComplete, setLoadingComplete] = useState(
-    () => typeof window === 'undefined' || window.location.pathname !== '/',
-  );
   const { pathname, hash, key } = useLocation();
   const firstRender = useRef(true);
 
@@ -179,10 +174,6 @@ export default function RootLayout() {
           texture itself where it needs to cover this up. */}
       <div aria-hidden="true" className="paper-base" />
 
-      {!loadingComplete && <Preloader onComplete={() => setLoadingComplete(true)} />}
-
-      <CustomCursor />
-
       {/* Skip link. With the header floating free of the document flow and the first
           landmark half a viewport down, a keyboard user otherwise tabs through seven nav
           icons on every single page before reaching a word of content. */}
@@ -197,7 +188,7 @@ export default function RootLayout() {
 
       {/* Keyed on the path so the entrance replays on every navigation. */}
       <main id="main" key={pathname} className="page-enter flex-1">
-        <Outlet context={{ loadingComplete }} />
+        <Outlet />
       </main>
 
       <Footer />

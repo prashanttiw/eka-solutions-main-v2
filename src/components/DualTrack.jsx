@@ -5,7 +5,6 @@ import Handshake from 'lucide-react/dist/esm/icons/handshake';
 import Package from 'lucide-react/dist/esm/icons/package';
 import Reveal from './Reveal';
 import TiltCard from './TiltCard';
-import ChromeObject from './ChromeObject';
 import SectionHeading from './SectionHeading';
 
 /**
@@ -62,21 +61,6 @@ export default function DualTrack() {
       id="model"
       className="section-dark relative overflow-hidden border-t border-[var(--border-hairline)] py-24 lg:py-32"
     >
-      <ChromeObject
-        variant="spiral"
-        className="-left-16 bottom-8 hidden w-[230px] lg:block xl:-left-4 xl:w-[280px]"
-        speed={110}
-        rotate={12}
-        tint={0.44}
-        opacity={0.85}
-        floatDuration={21}
-        floatY={-18}
-        floatX={10}
-        rotateFrom={-4}
-        rotateTo={4}
-        bloom={0.14}
-      />
-
       <div className="relative z-10 mx-auto max-w-[1300px] px-6 lg:px-10">
         <div className="grid items-end gap-10 lg:grid-cols-[1.15fr_1fr]">
           <SectionHeading
