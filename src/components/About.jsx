@@ -1,7 +1,6 @@
 import React from 'react';
 import Reveal from './Reveal';
 import CountUp from './CountUp';
-import ChromeObject from './ChromeObject';
 import SectionHeading from './SectionHeading';
 
 /**
@@ -45,19 +44,6 @@ export default function About() {
       id="about"
       className="section-dark relative overflow-hidden py-24 lg:py-32"
     >
-      <ChromeObject
-        variant="cluster"
-        className="-right-24 top-8 hidden w-[340px] lg:block xl:-right-10 xl:w-[400px]"
-        speed={-120}
-        rotate={-8}
-        tint={0.46}
-        opacity={0.9}
-        floatDuration={18}
-        floatY={-26}
-        rotateTo={6}
-        bloom={0.18}
-      />
-
       <div className="relative z-10 mx-auto max-w-[1300px] px-6 lg:px-10">
         <div className="grid items-start gap-14 lg:grid-cols-[1.05fr_1fr] lg:gap-20">
           <div>

@@ -6,7 +6,6 @@ import Boxes from 'lucide-react/dist/esm/icons/boxes';
 import Gauge from 'lucide-react/dist/esm/icons/gauge';
 import Reveal from './Reveal';
 import TiltCard from './TiltCard';
-import ChromeObject from './ChromeObject';
 import SectionHeading from './SectionHeading';
 import { useContent } from '../lib/content';
 
@@ -103,20 +102,6 @@ export default function Products() {
       id="products"
       className="section-dark relative overflow-hidden border-t border-[var(--border-hairline)] py-24 lg:py-32"
     >
-      <ChromeObject
-        variant="cluster"
-        className="-right-20 bottom-24 hidden w-[260px] xl:block"
-        speed={100}
-        rotate={10}
-        tint={0.5}
-        opacity={0.75}
-        floatDuration={19}
-        floatY={-22}
-        rotateFrom={3}
-        rotateTo={-5}
-        bloom={0.13}
-      />
-
       <div className="relative z-10 mx-auto max-w-[1300px] px-6 lg:px-10">
         <div className="grid items-end gap-10 lg:grid-cols-[1.1fr_1fr]">
           <SectionHeading

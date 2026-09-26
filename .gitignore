@@ -29,3 +29,4 @@ antigravity_footer_reference_pack/
 # Vercel
 .vercel
 .playbook-backup-2026-09-08/
+.env*

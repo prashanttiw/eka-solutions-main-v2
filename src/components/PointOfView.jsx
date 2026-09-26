@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ArrowUpRight from 'lucide-react/dist/esm/icons/arrow-up-right';
 import Reveal from './Reveal';
-import ChromeObject from './ChromeObject';
 
 /**
  * The one inverse band in the body, and the only place the page raises its voice.
@@ -32,20 +31,6 @@ export default function PointOfView() {
             background:
               'radial-gradient(58% 70% at 78% 30%, rgba(64, 101, 255, 0.16) 0%, transparent 68%), radial-gradient(46% 60% at 12% 88%, rgba(47, 66, 176, 0.14) 0%, transparent 64%)',
           }}
-        />
-
-        <ChromeObject
-          variant="spiral"
-          className="-right-8 top-1/2 hidden w-[260px] -translate-y-1/2 lg:block xl:right-8 xl:w-[320px]"
-          speed={-70}
-          rotate={16}
-          tint={0.32}
-          opacity={0.95}
-          floatDuration={17}
-          floatY={-26}
-          rotateFrom={-6}
-          rotateTo={8}
-          bloom={0.42}
         />
 
         <div className="relative z-10 mx-auto max-w-[1300px] px-6 lg:px-10">

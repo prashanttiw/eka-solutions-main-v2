@@ -7,7 +7,6 @@ import MapPin from 'lucide-react/dist/esm/icons/map-pin';
 import Sprout from 'lucide-react/dist/esm/icons/sprout';
 import Reveal from './Reveal';
 import SectionHeading from './SectionHeading';
-import ChromeObject from './ChromeObject';
 import FlipCard from './apply/FlipCard';
 import ApplicationForm from './apply/ApplicationForm';
 import { api } from '../lib/api';
@@ -136,20 +135,6 @@ export default function Careers({ standalone = false }) {
         standalone ? 'pt-10 lg:pt-14' : 'pt-24 lg:pt-32'
       }`}
     >
-      <ChromeObject
-        variant="cluster"
-        className="-left-32 bottom-4 hidden w-[210px] 2xl:block"
-        speed={80}
-        rotate={-10}
-        tint={0.48}
-        opacity={0.7}
-        floatDuration={20}
-        floatY={-18}
-        rotateFrom={-3}
-        rotateTo={6}
-        bloom={0.12}
-      />
-
       <div className="relative z-10 mx-auto max-w-[1300px] px-6 lg:px-10">
         {!standalone && (
           <div className="grid items-end gap-10 lg:grid-cols-[1.1fr_1fr]">
