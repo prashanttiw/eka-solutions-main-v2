@@ -184,15 +184,15 @@ export default function RootLayout() {
         Skip to content
       </a>
 
-      <Navbar />
+      {pathname !== '/' && <Navbar />}
 
       {/* Keyed on the path so the entrance replays on every navigation. */}
       <main id="main" key={pathname} className="page-enter flex-1">
         <Outlet />
       </main>
 
-      <Footer />
-      <WhatsAppFloat />
+      {pathname !== '/' && <Footer />}
+      {pathname !== '/' && <WhatsAppFloat />}
     </div>
   );
 }
