@@ -173,13 +173,10 @@ main[id], section[id] { scroll-margin-top: 104px; }
 
 /* ---------- Sections ---------- */
 .section { padding-block: var(--section); }
-.section-flush-top { padding-top: 0; }
 /* A second open section on the same paper needs less air above it: one gap, not two. */
 .section-follow { padding-top: clamp(24px, 4vw, 64px); }
 .tone-sunken { background: var(--paper-sunken); }
 .tone-raised { background: var(--paper-raised); }
-.intro-block { max-width: 880px; }
-.intro-block .lede { margin-top: var(--s3); max-width: 46ch; }
 .split-head { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); align-items: end; gap: var(--s4) var(--s8); margin-bottom: clamp(40px, 5vw, 64px); }
 .split-head .body { padding-bottom: 8px; }
 .card { background: var(--paper-raised); border: 1px solid var(--line); border-radius: var(--radius); }
