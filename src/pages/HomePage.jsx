@@ -49,18 +49,19 @@ function HeroFlow() {
           {Array.from({ length: 7 }, (_, row) => Array.from({ length: 10 }, (_, col) => <circle key={`${row}-${col}`} cx={28 + col * 56} cy={30 + row * 64} r="1.3" />))}
         </g>
         <g className="flow-paths">{FLOW_PATHS.map((d) => <path key={d} d={d} />)}</g>
-        <g className="flow-labels">
-          <text x="34" y="70">Spreadsheets</text>
-          <text x="34" y="194">Email threads</text>
-          <text x="34" y="318">Workarounds</text>
-        </g>
         <g className="flow-sources">
           <circle cx="34" cy="96" r="6" /><circle cx="34" cy="220" r="6" /><circle cx="34" cy="344" r="6" />
         </g>
         <path className="flow-out" d="M384 220H520M506 208l14 12-14 12" />
         <circle className="flow-node" cx="384" cy="220" r="10" />
-        <text className="flow-result" x="398" y="194">One clear path</text>
       </FlowSvg>
+      {/* Labels are HTML, not SVG text, so they keep a readable size when the drawing shrinks. */}
+      <div className="flow-labels" aria-hidden="true">
+        <span style={{ left: '6%', top: '16%' }}>Spreadsheets</span>
+        <span style={{ left: '6%', top: '44%' }}>Email threads</span>
+        <span style={{ left: '6%', top: '72.3%' }}>Workarounds</span>
+        <span className="flow-result" style={{ right: '7%', top: '44%' }}>One clear path</span>
+      </div>
       <div className="flow-sweep">
         <div className="flow-window">
           <FlowSvg className="flow-glow">
