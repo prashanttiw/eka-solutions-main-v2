@@ -7,12 +7,6 @@ const OBSERVATIONS = [
   ['Useful beats impressive', 'The best solution makes the next action easier to understand, even when nobody is watching a demo.'],
 ];
 
-const QUALITIES = [
-  ['Understandable', 'The people using it can tell what it is doing, and why.'],
-  ['Maintainable', 'Your own team can change it without starting over.'],
-  ['Resilient', 'It keeps working when the business, the load or the rules change.'],
-];
-
 export default function AboutPage() {
   return (
     <div className="about-page">
@@ -23,7 +17,7 @@ export default function AboutPage() {
             <h1 className="h-display">We like the hard part <em>before</em> the build.</h1>
           </div>
           <div className="page-hero-aside">
-            <p className="lede">Understanding what is really happening in a business takes patience. That work shapes everything that follows.</p>
+            <p className="lede">Before we design anything, we find out what is really going wrong. It is slow, careful work, and it shapes everything after it.</p>
             <TextLink to="/playbook">See how we work</TextLink>
           </div>
         </div>
@@ -31,47 +25,38 @@ export default function AboutPage() {
 
       <section className="section tone-raised" aria-labelledby="why-title">
         <div className="wrap two-col">
-          <div>
-            <Eyebrow>Why this matters</Eyebrow>
-            <h2 id="why-title" className="h-section">A system is only as clear as the thinking inside it.</h2>
-          </div>
+          <h2 id="why-title" className="h-section">Confusing software usually starts as a confusing conversation.</h2>
           <div>
             <p className="lede">People feel the seams when design, engineering and business decisions are made apart. We start by putting those conversations next to each other.</p>
-            <p className="body">We ask what the person using the software is trying to accomplish, what the business needs to learn, and which constraints are real. Then we make those answers visible enough for everyone to challenge.</p>
+            <p className="body">We ask what the person using the software is trying to do, what the business needs to know and which constraints are real. Then we write the answers down where everyone can question them.</p>
           </div>
         </div>
       </section>
 
       <section className="section" aria-labelledby="details-title">
         <div className="wrap">
-          <div className="split-head">
-            <div>
-              <Eyebrow>What we pay attention to</Eyebrow>
-              <h2 id="details-title" className="h-section">The details are the work.</h2>
-            </div>
-            <p className="body">Small enough to miss, important enough to change the outcome.</p>
-          </div>
-          <div className="note-cards">
-            {OBSERVATIONS.map(([title, body], index) => (
-              <article className="note-card card" key={title}>
-                <span className="note-card-index">{index + 1}</span>
+          <h2 id="details-title" className="h-section notes-title">The details are the work.</h2>
+          <ul className="notes">
+            {OBSERVATIONS.map(([title, body]) => (
+              <li key={title}>
                 <h3 className="h-card">{title}</h3>
                 <p>{body}</p>
-              </article>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
-      <section className="section tone-sunken" aria-labelledby="leave-title">
-        <div className="wrap">
-          <div className="intro-block">
-            <Eyebrow>What we aim to leave</Eyebrow>
-            <h2 id="leave-title" className="h-section">Something that still makes sense <em>tomorrow.</em></h2>
+      <section className="section tone-sunken" aria-labelledby="today-title">
+        <div className="wrap moment">
+          <Eyebrow>Where we are today</Eyebrow>
+          <h2 id="today-title" className="h-section">New, small, and doing the work ourselves.</h2>
+          <p className="lede">EKA is a young studio started by two founders. For now, the people you first speak to are the people who design and build your project.</p>
+          <p className="body">We are careful about what we show. Our own website is the first project we can open up fully; client work appears here only once it is approved for publication.</p>
+          <div className="moment-links">
+            <TextLink to="/founding-25">How Founding 25 works</TextLink>
+            <TextLink to="/work">See the work we can show</TextLink>
           </div>
-          <ul className="qualities">
-            {QUALITIES.map(([title, text]) => <li key={title}><strong>{title}</strong><p>{text}</p></li>)}
-          </ul>
         </div>
       </section>
 
