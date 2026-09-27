@@ -69,7 +69,7 @@ export function BoardVignette() {
         <div className="vg-col">
           <p>Review<Swap from="3" to="2" /></p>
           <span className="vg-card is-active vg-mover">
-            <span className="vg-card-text">Refund ₹4,200</span>
+            <span className="vg-card-text">Refund ₹850</span>
             <Swap className="vg-chip" from={<em>Pending</em>} to={<em className="is-ok">Approved</em>} />
           </span>
           <span className="vg-card">New vendor</span>

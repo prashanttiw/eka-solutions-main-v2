@@ -321,17 +321,17 @@ main[id], section[id] { scroll-margin-top: 104px; }
 .vg-card em.is-ok { background: #dcefe1; color: #1f6636; }
 @container (max-width: 450px) {
   .vg-columns { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s1); }
-  .vg-col { padding: 6px; }
+  .vg-col { padding: 5px; }
   .vg-col:first-child { display: none; }
-  .vg-card, .vg-card.is-active { padding: 0 var(--s1); }
+  .vg-card, .vg-card.is-active { padding: 0 6px; }
   .vg-board .vg-mover { --hop: 20px; }
 }
 @supports not (container-type: inline-size) {
   @media (max-width: 520px) {
     .vg-columns { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s1); }
-    .vg-col { padding: 6px; }
+    .vg-col { padding: 5px; }
     .vg-col:first-child { display: none; }
-    .vg-card, .vg-card.is-active { padding: 0 var(--s1); }
+    .vg-card, .vg-card.is-active { padding: 0 6px; }
     .vg-board .vg-mover { --hop: 20px; }
   }
 }
@@ -759,6 +759,8 @@ main[id], section[id] { scroll-margin-top: 104px; }
 }
 
 @media (max-width: 520px) {
+  /* Phones: a slightly tighter artboard so the board illustration keeps its labels whole. */
+  .service-cards .vg-stage { padding: 12px; }
   .h-display { font-size: clamp(42px, 12vw, 54px); }
   .h-section { font-size: clamp(32px, 8.6vw, 40px); }
   .actions { flex-direction: column; align-items: stretch; }
