@@ -93,8 +93,8 @@ export default function FoundingPage() {
             <Eyebrow>How to apply</Eyebrow>
             <h2 id="apply-title" className="h-section">Three steps to a <em>first conversation.</em></h2>
           </div>
-          <ol className="after-hello">
-            {STEPS.map(([title, text], index) => <li className="card" key={title}><span>{index + 1}</span><strong>{title}</strong><p>{text}</p></li>)}
+          <ol className="steps">
+            {STEPS.map(([title, text]) => <li key={title}><strong>{title}</strong><p>{text}</p></li>)}
           </ol>
         </div>
       </section>

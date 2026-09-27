@@ -63,27 +63,25 @@ export default function ContactPage() {
             <h1 className="h-display">Bring the rough version <em>first.</em></h1>
           </div>
           <div className="page-hero-aside">
-            <p className="lede">Half-formed is fine. Tell us what is happening, who it affects and what you hope could be different.</p>
+            <p className="lede">Tell us what is happening and who it affects. We will help shape the rest.</p>
           </div>
         </div>
       </header>
 
       <section className="section tone-sunken" aria-labelledby="note-title">
         <div className="wrap contact-grid">
-          <aside className="contact-aside">
-            <Eyebrow>Start a conversation</Eyebrow>
-            <h2 id="note-title" className="h-section">A useful note beats a perfect brief.</h2>
-            <p className="body">We will help frame the problem together. The form prepares an email in your own app, so you can read it before anything is sent.</p>
+          <div className="contact-direct-block">
+            <h2 className="contact-label">Talk to us directly</h2>
             <ul className="contact-direct">
               <li><a href={`mailto:${EMAIL}`}><span><small>Email</small><strong>{EMAIL}</strong></span><Arrow /></a></li>
               <li><a href={whatsappHref()} target="_blank" rel="noopener noreferrer"><span><small>WhatsApp</small><strong>{WHATSAPP_DISPLAY}</strong></span><Arrow /></a></li>
             </ul>
-          </aside>
+          </div>
 
           <div className="contact-sheet card">
             {!review ? (
               <form onSubmit={prepare} noValidate>
-                <h3 className="h-card">Tell us what is on your mind.</h3>
+                <h2 id="note-title" className="h-card">Tell us what is on your mind.</h2>
                 <label className={`founding-toggle ${founding ? 'is-on' : ''}`}>
                   <input type="checkbox" checked={founding} onChange={(event) => setFounding(event.target.checked)} />
                   <span className="founding-toggle-box" aria-hidden="true" />
@@ -102,7 +100,7 @@ export default function ContactPage() {
               </form>
             ) : (
               <div className="contact-review">
-                <h3 className="h-card">Ready to open in your email app.</h3>
+                <h2 id="note-title" className="h-card">Ready to open in your email app.</h2>
                 <p>Read it once, change anything you like, then send it from your own account.</p>
                 <pre>{email.text}</pre>
                 <div className="actions">
@@ -114,18 +112,13 @@ export default function ContactPage() {
             )}
             <p className="contact-sheet-note">Nothing is sent from this page. It stays private until you send it yourself.</p>
           </div>
-        </div>
-      </section>
 
-      <section className="section" aria-labelledby="after-title">
-        <div className="wrap">
-          <div className="intro-block">
-            <Eyebrow>After you say hello</Eyebrow>
-            <h2 id="after-title" className="h-section">What happens <em>next.</em></h2>
+          <div className="contact-next">
+            <h2 className="contact-label">What happens next</h2>
+            <ol className="steps">
+              {AFTER.map(([title, text]) => <li key={title}><strong>{title}</strong><p>{text}</p></li>)}
+            </ol>
           </div>
-          <ol className="after-hello">
-            {AFTER.map(([title, text], index) => <li className="card" key={title}><span>{index + 1}</span><strong>{title}</strong><p>{text}</p></li>)}
-          </ol>
         </div>
       </section>
     </div>
