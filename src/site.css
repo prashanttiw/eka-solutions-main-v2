@@ -250,16 +250,16 @@ main[id], section[id] { scroll-margin-top: 104px; }
 .service-cell:hover .service-more .icon { transform: translateX(4px); }
 .swipe-hint { display: none; }
 
-.move-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 0 0 44px; padding: 0; list-style: none; counter-reset: move; }
-.move { position: relative; display: flex; flex-direction: column; padding: 28px; border-radius: var(--radius); background: var(--paper-raised); border: 1px solid var(--line); }
-.move-index { width: 40px; height: 40px; display: grid; place-items: center; margin-bottom: 44px; border-radius: 50%; background: var(--ink); color: var(--paper-raised); font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums; }
-.move:not(:last-child)::after { content: ''; position: absolute; top: 47px; left: 80px; right: -17px; height: 2px; background: repeating-linear-gradient(90deg, var(--blue) 0 5px, transparent 5px 11px); opacity: .45; }
-.move .h-card { font-size: clamp(28px, 2.6vw, 36px); letter-spacing: -.03em; }
-.move-title { margin-top: 6px; color: var(--ink); font-weight: 600; }
-.move-text { margin-top: 10px; color: var(--ink-2); font-size: 16px; line-height: 1.6; }
-.move-output { margin-top: auto; padding-top: 24px; border-top: 1px solid var(--line); font-size: 15px; font-weight: 600; }
-.move-text + .move-output { margin-top: 28px; }
-.move-output span { display: block; margin-bottom: 4px; color: var(--ink-3); font-size: 13px; font-weight: 500; }
+/* The project path: one blue line with four stops, echoing the hero's "one clear path". */
+.path { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s4); margin: 0 0 var(--s6); padding: var(--s6) 0 0; list-style: none; }
+.path::before { content: ''; position: absolute; top: 7px; left: 8px; right: 6px; height: 2px; border-radius: 2px; background: var(--blue); }
+.path::after { content: ''; position: absolute; top: 3px; right: 1px; width: 10px; height: 10px; border-top: 2px solid var(--blue); border-right: 2px solid var(--blue); transform: rotate(45deg); }
+.path li { position: relative; display: grid; align-content: start; gap: var(--s1); }
+.path li::before { content: ''; position: absolute; top: calc(var(--s6) * -1); left: 0; width: 16px; height: 16px; border: 2px solid var(--blue); border-radius: 50%; background: var(--paper); box-sizing: border-box; }
+.path-verb { color: var(--ink); font-size: clamp(26px, 2.4vw, 34px); font-weight: 560; line-height: 1.1; letter-spacing: -.028em; }
+.path-line { color: var(--ink); font-size: 17px; line-height: 1.45; }
+.path-keep { margin-top: var(--s1); padding-top: var(--s2); border-top: 1px solid var(--line); color: var(--ink-2); font-size: 15px; line-height: 1.5; }
+.path-keep span { display: block; margin-bottom: 2px; color: var(--blue); font-size: 13px; font-weight: 600; }
 
 .belief { display: grid; gap: 48px; padding: clamp(36px, 5vw, 72px); background: var(--paper-sunken); border-radius: 28px; }
 .leave-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; margin: 0; padding: 32px 0 0; border-top: 1px solid var(--line-strong); list-style: none; }
@@ -678,14 +678,6 @@ main[id], section[id] { scroll-margin-top: 104px; }
   .home-hero-grid { grid-template-columns: 1fr; }
   .home-hero-copy .h-display { max-width: 12ch; }
   .hero-figure { max-width: 640px; }
-  .move-list { grid-template-columns: 1fr; }
-  .move { display: grid; grid-template-columns: 56px minmax(0, .8fr) minmax(0, 1fr); column-gap: 24px; align-items: start; }
-  .move-index { grid-row: 1 / span 4; margin: 0; }
-  .move .h-card, .move-title { grid-column: 2; }
-  .move-text, .move-output { grid-column: 3; }
-  .move-text { grid-row: 1 / span 2; margin: 0; }
-  .move-text + .move-output { margin-top: 16px; }
-  .move:not(:last-child)::after { display: none; }
   .careers-layout, .contact-grid, .case-feature { grid-template-columns: 1fr; }
   .career-card-wrap, .contact-aside { position: static; }
   /* Single column: size the card to the visible face instead of reserving the form's height. */
@@ -718,10 +710,10 @@ main[id], section[id] { scroll-margin-top: 104px; }
   .service-art { flex: 1; padding: 12px; border-bottom: 1px solid var(--line); }
   .service-copy { padding: var(--s2) var(--s3) var(--s3); }
   .swipe-hint { display: flex; align-items: center; justify-content: flex-end; gap: var(--s1); margin-top: var(--s2); color: var(--ink-3); font-size: 14px; font-weight: 500; }
-  .move { display: flex; align-items: stretch; }
-  .move-index { margin-bottom: 24px; }
-  .move-text { margin-top: 10px; }
-  .move-text + .move-output { margin-top: 24px; }
+  .path { grid-template-columns: 1fr; row-gap: var(--s4); padding: 0 0 var(--s5) var(--s5); }
+  .path::before { top: 8px; bottom: 14px; left: 7px; right: auto; width: 2px; height: auto; }
+  .path::after { top: auto; bottom: 8px; left: 3px; right: auto; transform: rotate(135deg); }
+  .path li::before { top: 4px; left: calc(var(--s5) * -1); }
   .qualities { grid-template-columns: 1fr; }
   .qualities li, .qualities li + li { padding: 24px 0; border-left: 0; border-bottom: 1px solid var(--line); }
   .stage-num { font-size: 88px; }

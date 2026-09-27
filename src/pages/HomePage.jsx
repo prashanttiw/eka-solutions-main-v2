@@ -6,17 +6,12 @@ import FoundingPlaces from '../components/FoundingPlaces';
 import { FOUNDING } from '../lib/founding';
 import { usePlayWhenVisible } from '../lib/playWhenVisible';
 import { SERVICES } from '../lib/services';
+import { STAGES } from '../lib/stages';
 
 const SYMPTOMS = [
   ['“Only one person really understands the spreadsheet.”', 'The process has outgrown its tool, and the knowledge lives in someone’s head.'],
   ['“Customers keep asking where things stand.”', 'The information exists, but nobody outside the team can see it.'],
   ['“Every new request means another workaround.”', 'The system was shaped for last year’s business, not this one.'],
-];
-
-const MOVES = [
-  ['Listen', 'Find the real friction', 'We start with the moment that is failing someone, not a list of features.', 'A shared picture of the problem'],
-  ['Shape', 'Make the path visible', 'A working model gives everyone something concrete to test and question.', 'A clear, agreed first release'],
-  ['Build', 'Prove it in use', 'Design and engineering move together in small pieces you can review as they become real.', 'Working software, week by week'],
 ];
 
 const LEAVES = [
@@ -163,20 +158,16 @@ export default function HomePage() {
       <section className="section" id="how-we-work" aria-labelledby="method-title">
         <div className="wrap">
           <div className="split-head">
-            <div>
-              <Eyebrow>How a project runs</Eyebrow>
-              <h2 id="method-title" className="h-section">Three moves. <em>One conversation.</em></h2>
-            </div>
-            <p className="body">Fewer handoffs and clearer decisions. You speak with the people designing and building the work, from the first call to launch.</p>
+            <h2 id="method-title" className="h-section">How a project runs</h2>
+            <p className="body">Four stages, led by the people you first speak to. Each one ends with something you can keep and use.</p>
           </div>
-          <ol className="move-list">
-            {MOVES.map(([verb, title, text, output], index) => (
-              <li className="move" key={verb}>
-                <span className="move-index">{String(index + 1).padStart(2, '0')}</span>
-                <h3 className="h-card">{verb}</h3>
-                <p className="move-title">{title}</p>
-                <p className="move-text">{text}</p>
-                <p className="move-output"><span>You leave with</span>{output}</p>
+          {/* The hero's "one clear path", drawn out: one line, four stops, and it keeps going. */}
+          <ol className="path">
+            {STAGES.map((stage) => (
+              <li key={stage.number}>
+                <h3 className="path-verb">{stage.verb}</h3>
+                <p className="path-line">{stage.line}</p>
+                <p className="path-keep"><span>You keep</span>{stage.output}</p>
               </li>
             ))}
           </ol>
