@@ -1,16 +1,13 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { WHATSAPP_DISPLAY, whatsappHref } from '../lib/whatsapp';
 
 /**
- * The one persistent way to reach a human, parked bottom-right.
+ * The one persistent way to reach a person, parked in the right-hand margin on wide screens.
  *
- * Collapsed it is an ink disc — quiet enough to live over any section. On hover or keyboard
- * focus the capsule grows leftward and hands over the actual number, so the visitor can read
- * it (or save it) without committing to a tap. The reveal animates a grid track from 0fr to
- * 1fr rather than a max-width, which is the only way to ease to a *content-sized* width
- * without hard-coding one and without the usual max-width lurch.
- *
- * Touch devices never get the hover state, so there the disc simply opens the chat.
+ * Below 1380px there is no margin for it to sit in, so it would cover text and buttons; there
+ * the same link lives inside the floating navigation instead (see Navbar). The disc also steps
+ * aside while the footer is on screen, because the footer carries its own WhatsApp link and
+ * an ink disc disappears against the navy.
  */
 
 export function WhatsAppGlyph({ className = 'h-5 w-5' }) {
@@ -22,8 +19,19 @@ export function WhatsAppGlyph({ className = 'h-5 w-5' }) {
 }
 
 export default function WhatsAppFloat() {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const link = ref.current;
+    const footer = document.querySelector('.site-footer');
+    if (!link || !footer || typeof IntersectionObserver === 'undefined') return undefined;
+    const observer = new IntersectionObserver(([entry]) => link.classList.toggle('is-away', entry.isIntersecting));
+    observer.observe(footer);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <a href={whatsappHref()} target="_blank" rel="noopener noreferrer" className="v2-whatsapp" aria-label={`Message EKA Solution on WhatsApp at ${WHATSAPP_DISPLAY}`}>
+    <a ref={ref} href={whatsappHref()} target="_blank" rel="noopener noreferrer" className="v2-whatsapp" aria-label={`Message EKA Solution on WhatsApp at ${WHATSAPP_DISPLAY}`}>
       <WhatsAppGlyph />
     </a>
   );

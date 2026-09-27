@@ -3,6 +3,8 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import { PAGES } from '../site';
 import { usePlayWhenVisible } from '../lib/playWhenVisible';
 import { Arrow, Button, EMAIL } from './ui';
+import { WhatsAppGlyph } from './WhatsAppFloat';
+import { WHATSAPP_DISPLAY, whatsappHref } from '../lib/whatsapp';
 
 export default function Navbar() {
   const [menuPath, setMenuPath] = useState(null);
@@ -64,6 +66,7 @@ export default function Navbar() {
                 <NavLink key={path} to={path} className={({ isActive }) => (isActive ? 'active' : undefined)}>{label}</NavLink>
               ))}
             </nav>
+            <a className="nav-whatsapp" href={whatsappHref()} target="_blank" rel="noopener noreferrer" aria-label={`Message EKA Solution on WhatsApp at ${WHATSAPP_DISPLAY}`}><WhatsAppGlyph /></a>
             <Button to="/contact" className="nav-cta">Start a project</Button>
             <button ref={buttonRef} type="button" className="nav-menu-button" aria-expanded={menuOpen} aria-controls="site-mobile-menu" onClick={() => setMenuPath(menuOpen ? null : pathname)}>
               {menuOpen ? 'Close' : 'Menu'}<span className="nav-menu-lines" aria-hidden="true" />

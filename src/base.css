@@ -9,7 +9,4 @@ img { max-width: 100%; }
 .app-main { flex: 1; }
 .skip-link { position: fixed; z-index: 120; left: 50%; top: 10px; transform: translate(-50%, -180%); padding: 10px 15px; border-radius: 8px; background: #fff; color: #0a0a0d; font-size: 13px; font-weight: 700; text-decoration: none; }
 .skip-link:focus { transform: translate(-50%, 0); }
-.v2-whatsapp { position: fixed; z-index: 80; right: 18px; bottom: 18px; width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.6); border-radius: 50%; background: #0a0a0d; color: #fff; box-shadow: 0 5px 18px rgba(10,10,13,.18); }
-.v2-whatsapp:hover { background: #2854ff; }
-.v2-whatsapp svg { width: 21px; height: 21px; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
