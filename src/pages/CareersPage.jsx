@@ -70,7 +70,7 @@ export default function CareersPage() {
             <h1 className="h-display">Good work takes <em>good company.</em></h1>
           </div>
           <div className="page-hero-aside">
-            <p className="lede">We are drawn to people who ask careful questions, make complex things easier to use and keep learning after the launch.</p>
+            <p className="lede">EKA is small, so each person shapes how the work feels. We look for people who ask careful questions and keep improving things after launch.</p>
           </div>
         </div>
       </header>
@@ -78,11 +78,8 @@ export default function CareersPage() {
       <section className="section tone-sunken" id="openings" aria-labelledby="roles-title">
         <div className="wrap">
           <div className="split-head">
-            <div>
-              <Eyebrow>Roles</Eyebrow>
-              <h2 id="roles-title" className="h-section">Find the work that <em>sounds like you.</em></h2>
-            </div>
-            <p className="body">Choose a role and the card on the right turns into a short introduction you send from your own email.</p>
+            <h2 id="roles-title" className="h-section">Find the work that sounds like you.</h2>
+            <p className="body">Choose a role and the card turns into a short introduction that you send from your own email.</p>
           </div>
           <p className="draft-note">Draft listings for review. Availability and details are not yet confirmed.</p>
 
@@ -104,7 +101,7 @@ export default function CareersPage() {
                 <div className="career-card-face career-card-front" inert={Boolean(selected) || undefined}>
                   <div className="career-card-top"><Eyebrow>How hiring works</Eyebrow></div>
                   <h3>First, let’s talk about the work.</h3>
-                  <p className="career-card-intro">We care about how you think, what you make and what you want to get better at.</p>
+                  <p className="career-card-intro">We want to know how you think, and what you would like to get better at.</p>
                   <ol className="career-process">
                     {PROCESS.map(([title, detail], index) => <li key={title}><span>{index + 1}</span><div><strong>{title}</strong><p>{detail}</p></div></li>)}
                   </ol>
@@ -144,7 +141,7 @@ export default function CareersPage() {
       </section>
 
       <ClosingCta eyebrow="A good introduction" title={<>Show us something <em>you care about.</em></>} action="Choose a role" to="#openings">
-        A project, a decision, a difficult problem or a lesson learned. The context behind the work tells us more than a list of tools.
+        A project you are proud of, or one that went wrong and taught you something. The story behind the work tells us more than a list of tools.
       </ClosingCta>
     </div>
   );
