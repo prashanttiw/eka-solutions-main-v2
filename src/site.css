@@ -599,17 +599,32 @@ main[id], section[id] { scroll-margin-top: 104px; }
 .after-hello p { margin-top: 8px; color: var(--ink-2); font-size: 16px; line-height: 1.55; }
 
 /* ---------- Founding 25 ---------- */
-.founding-band { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); align-items: center; gap: 40px clamp(40px, 6vw, 96px); padding: clamp(32px, 5vw, 64px); border: 1px solid var(--line); border-radius: 28px; background: var(--paper-raised); }
-.founding-band .body { margin-top: 22px; }
-.founding-band .actions { margin-top: 30px; }
-.places { display: grid; gap: 22px; justify-items: start; }
-.places.card { padding: clamp(24px, 3vw, 36px); }
-.places-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 9px; width: min(100%, 236px); }
-.places-grid i { aspect-ratio: 1; border-radius: 50%; border: 1.5px solid var(--blue); background: var(--blue-tint); }
+/* On the homepage the offer is a full-bleed ink band in the middle of the page, well away from
+   the navy footer, rather than one more box on the paper. */
+.band-ink { background: var(--ink); color: #e3e9f5; }
+.band-ink .h-section { color: #fff; }
+.band-ink .text-link { color: #fff; }
+.band-ink .text-link:hover { color: var(--sky); }
+.band-ink :focus-visible { outline-color: var(--sky); }
+.band-label { display: inline-flex; align-items: center; gap: 10px; margin-bottom: var(--s3); color: var(--sky); font-size: 14px; font-weight: 600; }
+.band-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: #5fd08c; }
+.founding-band { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: end; gap: var(--s6) clamp(48px, 7vw, 112px); }
+.founding-band .h-section { max-width: 15ch; }
+.founding-promise { max-width: 48ch; margin-top: var(--s3); color: #c9d4e8; font-size: clamp(17px, 1.4vw, 19px); line-height: 1.6; }
+.founding-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2) var(--s4); margin-top: var(--s5); }
+.places { display: grid; gap: var(--s2); justify-items: start; }
+.places-mark { display: flex; align-items: center; gap: var(--s3); }
+.places-number { color: var(--blue); font: italic 400 clamp(72px, 9vw, 128px)/.8 var(--serif); letter-spacing: -.02em; }
+.places-grid { display: grid; grid-template-columns: repeat(5, 12px); gap: 9px; }
+.places-grid i { width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid var(--blue); background: var(--blue-tint); }
 .places-grid i.is-taken { border-color: var(--ink); background: var(--ink); }
-.places-caption { display: grid; gap: 4px; max-width: 30ch; }
-.places-caption strong { color: var(--blue); font: italic 400 clamp(52px, 5vw, 72px)/.9 var(--serif); }
-.places-caption span { color: var(--ink-2); font-size: 15px; line-height: 1.5; }
+.places-caption { max-width: 30ch; color: var(--ink-2); font-size: 15px; line-height: 1.5; }
+.places.card { padding: var(--s4); }
+.places-dark { padding-left: clamp(0px, 4vw, 48px); border-left: 1px solid var(--line-light); }
+.places-dark .places-number { color: var(--sky); }
+.places-dark .places-grid i { border-color: rgba(169, 198, 242, .7); background: transparent; }
+.places-dark .places-grid i.is-taken { border-color: #fff; background: #fff; }
+.places-dark .places-caption { color: #b6c1d4; }
 .founding-why { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); align-items: center; gap: 40px clamp(40px, 6vw, 96px); }
 .founding-why .lede { margin-top: 26px; max-width: 42ch; }
 .founding-why .body { margin-top: 16px; }
@@ -640,7 +655,7 @@ main[id], section[id] { scroll-margin-top: 104px; }
 /* ---------- WhatsApp ----------
    Wide screens: a disc in the right-hand margin. Narrower screens have no margin, so the link
    moves into the navigation pill instead of covering content. */
-.v2-whatsapp { position: fixed; z-index: 80; right: var(--s2); bottom: var(--s2); width: 48px; height: 48px; display: none; place-items: center; border-radius: 50%; background: var(--ink); color: #fff; box-shadow: 0 10px 24px -10px rgba(11, 26, 51, .6); transition: background-color .2s ease, transform .3s var(--ease), opacity .3s var(--ease), visibility 0s linear 0s; }
+.v2-whatsapp { position: fixed; z-index: 80; right: var(--s2); bottom: var(--s2); width: 48px; height: 48px; display: none; place-items: center; border-radius: 50%; background: var(--ink); color: #fff; box-shadow: 0 0 0 1px rgba(255, 255, 255, .22), 0 10px 24px -10px rgba(11, 26, 51, .6); transition: background-color .2s ease, transform .3s var(--ease), opacity .3s var(--ease), visibility 0s linear 0s; }
 .v2-whatsapp svg, .nav-whatsapp svg { width: 20px; height: 20px; }
 .v2-whatsapp:hover { background: #1c7c47; transform: translateY(-2px); }
 .v2-whatsapp.is-away { opacity: 0; transform: translateY(8px); visibility: hidden; pointer-events: none; transition: opacity .3s var(--ease), transform .3s var(--ease), visibility 0s linear .3s; }
@@ -689,6 +704,9 @@ main[id], section[id] { scroll-margin-top: 104px; }
   .split-head { align-items: start; }
   .chapter:nth-child(even) .chapter-copy { order: 0; }
   .voices-layout, .note-cards, .decision-cards, .after-hello, .leave-list, .founding-band, .founding-why { grid-template-columns: 1fr; }
+  .places-dark { padding: var(--s3) 0 0; border-left: 0; border-top: 1px solid var(--line-light); }
+  .places-grid { grid-template-columns: repeat(5, 10px); gap: 7px; }
+  .places-grid i { width: 10px; height: 10px; }
   .included-list { grid-template-columns: 1fr; }
   .included-list li, .included-list li:nth-child(n+4) { grid-column: auto; }
   .voice-quote { font-size: clamp(24px, 6.6vw, 30px); }
@@ -720,7 +738,7 @@ main[id], section[id] { scroll-margin-top: 104px; }
   .actions { flex-direction: column; align-items: stretch; }
   .actions .btn { justify-content: space-between; }
   .form-pair { grid-template-columns: 1fr; }
-  .belief, .founding-band { padding: 28px 22px; border-radius: 22px; }
+  .belief { padding: 28px 22px; border-radius: 22px; }
   .closing-card { padding: 32px 22px; border-radius: 24px; }
   .closing-actions .btn { width: 100%; justify-content: space-between; }
   .site-footer { padding-bottom: 88px; border-radius: 24px 24px 0 0; }

@@ -145,6 +145,21 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="section band-ink" aria-labelledby="founding-title">
+        <div className="wrap founding-band">
+          <div className="founding-copy">
+            <p className="band-label"><span className="band-dot" aria-hidden="true" />Founding 25</p>
+            <h2 id="founding-title" className="h-section">Our first 25 clients work directly with the founders.</h2>
+            <p className="founding-promise">A personal reply, a working session with both founders, a written first plan and a direct line until launch.</p>
+            <div className="founding-actions">
+              <Button to={FOUNDING.applyPath} variant="light">Apply for a place</Button>
+              <TextLink to="/founding-25">How it works</TextLink>
+            </div>
+          </div>
+          <FoundingPlaces tone="dark" />
+        </div>
+      </section>
+
       <section className="section" id="how-we-work" aria-labelledby="method-title">
         <div className="wrap">
           <div className="split-head">
@@ -166,23 +181,6 @@ export default function HomePage() {
             ))}
           </ol>
           <TextLink to="/playbook">Read the full playbook</TextLink>
-        </div>
-      </section>
-
-      <section className="section section-flush-top" aria-labelledby="founding-title">
-        <div className="wrap">
-          <div className="founding-band">
-            <div>
-              <Eyebrow>Founding 25</Eyebrow>
-              <h2 id="founding-title" className="h-section">Our first 25 clients work directly <em>with the founders.</em></h2>
-              <p className="body">A personal reply, a working session with both founders, a written first plan and a direct line until launch. When the twenty-five places are taken, the programme closes.</p>
-              <div className="actions">
-                <Button to={FOUNDING.applyPath}>Apply for a place</Button>
-                <Button to="/founding-25" variant="ghost" dir="right">How it works</Button>
-              </div>
-            </div>
-            <FoundingPlaces />
-          </div>
         </div>
       </section>
 
