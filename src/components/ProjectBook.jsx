@@ -70,7 +70,7 @@ const PROJECTS = [
     sector: 'AI · Enterprise automation',
     year: '2025',
     note: 'Four thousand documents a day, reviewed by hand. The pilot worked in the demo and could not be trusted with a real queue, so we built the evaluation harness before we touched the prompts.',
-    stack: ['Python', 'pgvector', 'LangGraph', 'Claude'],
+    stack: ['Python', 'pgvector', 'LangGraph', 'LLM APIs'],
     stat: { value: '82%', label: 'Fully automated' },
     image: '/assets/case-neural.jpg',
   },

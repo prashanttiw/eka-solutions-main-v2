@@ -27,12 +27,11 @@ Do not optimize for time on page alone. A clear site may help people enquire soo
 
 Read these files before editing:
 
-1. `../CLAUDE.md`
-2. `../memory/projects/eka-main-website.md`
-3. `../memory/projects/eka-solutions.md`
-4. `../memory/context/working-method.md`
-5. `FRONTEND-REFINEMENT.md`
-6. The actual source files and current Git diff.
+1. `../memory/projects/eka-main-website.md`
+2. `../memory/projects/eka-solutions.md`
+3. `../memory/context/working-method.md`
+4. `FRONTEND-REFINEMENT.md`
+5. The actual source files and current Git diff.
 
 ### Important working-tree state
 

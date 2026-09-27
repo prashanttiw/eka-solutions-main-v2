@@ -189,7 +189,7 @@ export const LISTINGS = {
     [
       'AWS', 'GCP', 'Cloudflare', 'Kubernetes', 'Terraform', 'Pulumi', 'Docker',
       'GitHub Actions', 'OpenTelemetry', 'Grafana', 'Datadog', 'pgvector',
-      'LangGraph', 'Claude', 'Playwright',
+      'LangGraph', 'LLM APIs', 'Playwright',
     ],
   ],
 };
