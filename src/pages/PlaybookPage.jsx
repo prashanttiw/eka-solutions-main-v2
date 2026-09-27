@@ -1,7 +1,6 @@
 import React from 'react';
-import { ClosingCta, Eyebrow } from '../components/ui';
+import { Arrow, ClosingCta, Eyebrow } from '../components/ui';
 import { STAGES } from '../lib/stages';
-
 
 export default function PlaybookPage() {
   return (
@@ -17,9 +16,9 @@ export default function PlaybookPage() {
               <p className="lede">Four stages. Each one leaves something useful behind and removes a little uncertainty from the next.</p>
             </div>
           </div>
-          <nav aria-label="Stages on this page">
-            <ul className="anchor-pills">
-              {STAGES.map((stage) => <li key={stage.number}><a href={`#stage-${stage.number}`}><span>{stage.number}</span>{stage.verb}</a></li>)}
+          <nav className="page-index" aria-label="Stages on this page">
+            <ul>
+              {STAGES.map((stage) => <li key={stage.number}><a href={`#stage-${stage.number}`}>{stage.verb}<Arrow dir="down" /></a></li>)}
             </ul>
           </nav>
         </div>
@@ -31,16 +30,16 @@ export default function PlaybookPage() {
             <div className="wrap stage-grid">
               <span className="stage-num" aria-hidden="true">{stage.number}</span>
               <div className="stage-copy">
-                <Eyebrow>{stage.line}</Eyebrow>
                 <h2 id={`stage-${stage.number}-title`} className="h-section">{stage.verb}</h2>
+                <p className="stage-line">{stage.line}</p>
                 <p className="lede">{stage.text}</p>
                 <div className="stage-detail">
-                  <div className="card">
+                  <div className="stage-questions">
                     <h3>Questions we ask</h3>
                     <ul>{stage.questions.map((question) => <li key={question}>{question}</li>)}</ul>
                   </div>
-                  <div className="card stage-output">
-                    <h3>What it leaves behind</h3>
+                  <div className="stage-keep">
+                    <h3>What you keep</h3>
                     <p>{stage.output}</p>
                   </div>
                 </div>
@@ -50,8 +49,8 @@ export default function PlaybookPage() {
         ))}
       </div>
 
-      <ClosingCta eyebrow="Start here" title={<>Your first note can be <em>unfinished.</em></>} action="Tell us the situation">
-        You do not need a perfect brief. The first conversation is where we begin to make the work clear.
+      <ClosingCta eyebrow="Start here" title={<>Stage one is <em>a conversation.</em></>} action="Tell us the situation">
+        You do not need a perfect brief. Tell us what is happening; we listen first, then write back with what we heard.
       </ClosingCta>
     </div>
   );
