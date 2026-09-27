@@ -4,6 +4,7 @@ import { Button, ClosingCta, Eyebrow, TextLink } from '../components/ui';
 import { VIGNETTES } from '../components/vignetteList';
 import FoundingPlaces from '../components/FoundingPlaces';
 import { FOUNDING } from '../lib/founding';
+import { usePlayWhenVisible } from '../lib/playWhenVisible';
 import { SERVICES } from '../lib/services';
 
 const SYMPTOMS = [
@@ -24,30 +25,52 @@ const LEAVES = [
   ['Every choice is explained', 'Decisions are written down, so the reasoning survives the handover.'],
 ];
 
+const FLOW_PATHS = [
+  'M34 96C96 74 118 156 180 134S262 82 302 152 352 212 384 220',
+  'M34 220C86 198 112 262 172 242S252 190 292 230 352 220 384 220',
+  'M34 344C96 344 132 376 194 366S266 332 306 290 354 230 384 220',
+];
+
+function FlowSvg({ className, children }) {
+  return <svg className={className} viewBox="0 0 560 440" aria-hidden="true">{children}</svg>;
+}
+
+/*
+ * The diagram is static SVG. Its "flow" is a highlight window sliding left to right while
+ * the blue copy inside it slides the other way, so the copy stays registered with the
+ * paths. Both are transform animations the compositor runs without repainting the SVG.
+ */
 function HeroFlow() {
+  const ref = usePlayWhenVisible();
   return (
-    <svg className="hero-flow" viewBox="0 0 560 440" role="img" aria-labelledby="flow-title">
-      <title id="flow-title">Spreadsheets, email threads and workarounds joining into one clear path</title>
-      <g className="flow-grid">
-        {Array.from({ length: 7 }, (_, row) => Array.from({ length: 10 }, (_, col) => <circle key={`${row}-${col}`} cx={28 + col * 56} cy={30 + row * 64} r="1.3" />))}
-      </g>
-      <g className="flow-paths">
-        <path d="M34 96C96 74 118 156 180 134S262 82 302 152 352 212 384 220" />
-        <path d="M34 220C86 198 112 262 172 242S252 190 292 230 352 220 384 220" />
-        <path d="M34 344C98 368 134 288 194 310S264 362 304 292 354 230 384 220" />
-      </g>
-      <g className="flow-labels">
-        <text x="34" y="70">Spreadsheets</text>
-        <text x="34" y="194">Email threads</text>
-        <text x="34" y="318">Workarounds</text>
-      </g>
-      <g className="flow-sources">
-        <circle cx="34" cy="96" r="6" /><circle cx="34" cy="220" r="6" /><circle cx="34" cy="344" r="6" />
-      </g>
-      <path className="flow-out" d="M384 220H520M506 208l14 12-14 12" />
-      <circle className="flow-node" cx="384" cy="220" r="10" />
-      <text className="flow-result" x="398" y="194">One clear path</text>
-    </svg>
+    <div ref={ref} className="flow-stage play-scope" role="img" aria-label="Spreadsheets, email threads and workarounds joining into one clear path">
+      <FlowSvg className="hero-flow">
+        <g className="flow-grid">
+          {Array.from({ length: 7 }, (_, row) => Array.from({ length: 10 }, (_, col) => <circle key={`${row}-${col}`} cx={28 + col * 56} cy={30 + row * 64} r="1.3" />))}
+        </g>
+        <g className="flow-paths">{FLOW_PATHS.map((d) => <path key={d} d={d} />)}</g>
+        <g className="flow-labels">
+          <text x="34" y="70">Spreadsheets</text>
+          <text x="34" y="194">Email threads</text>
+          <text x="34" y="318">Workarounds</text>
+        </g>
+        <g className="flow-sources">
+          <circle cx="34" cy="96" r="6" /><circle cx="34" cy="220" r="6" /><circle cx="34" cy="344" r="6" />
+        </g>
+        <path className="flow-out" d="M384 220H520M506 208l14 12-14 12" />
+        <circle className="flow-node" cx="384" cy="220" r="10" />
+        <text className="flow-result" x="398" y="194">One clear path</text>
+      </FlowSvg>
+      <div className="flow-sweep">
+        <div className="flow-window">
+          <FlowSvg className="flow-glow">
+            {FLOW_PATHS.map((d) => <path key={d} d={d} />)}
+            <path className="flow-glow-out" d="M392 220H516" />
+          </FlowSvg>
+        </div>
+      </div>
+      <span className="flow-halo" />
+    </div>
   );
 }
 
@@ -110,7 +133,7 @@ export default function HomePage() {
               const Vignette = VIGNETTES[index];
               return (
                 <Link className="service-card" key={service.id} to={`/services#${service.id}`}>
-                  <Vignette />
+                  <div className="vg-stage"><Vignette /></div>
                   <div className="service-card-copy">
                     <h3 className="h-card">{service.title}</h3>
                     <p>{service.short}</p>
