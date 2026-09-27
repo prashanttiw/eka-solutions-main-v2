@@ -300,7 +300,9 @@ main[id], section[id] { scroll-margin-top: 104px; }
 .vg-steps li.vg-ring { position: absolute; left: 0; top: 79px; width: 12px; height: 12px; display: block; }
 .vg-ring::before { content: ''; position: absolute; inset: 0; border-radius: 50%; background: var(--blue); opacity: .3; transform: scale(1.9); }
 
-/* Board */
+/* Board. Below 450px of its own width it shows only the two columns its story needs
+   (Review → Done), so labels stay whole and the moving card never spills over. */
+.vg-board { container-type: inline-size; }
 .vg-columns { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
 .vg-col { display: grid; grid-template-columns: minmax(0, 1fr); align-content: start; gap: 8px; padding: 10px; border-radius: 10px; background: #f5f3ee; }
 .vg-col p { display: flex; justify-content: space-between; color: var(--ink-2); font-size: 12px; font-weight: 600; }
@@ -312,6 +314,24 @@ main[id], section[id] { scroll-margin-top: 104px; }
 .vg-chip { justify-items: start; }
 .vg-card em { width: fit-content; padding: 2px 7px; border-radius: 999px; background: var(--blue-tint); color: var(--blue-deep); font-size: 11px; font-style: normal; font-weight: 600; white-space: nowrap; }
 .vg-card em.is-ok { background: #dcefe1; color: #1f6636; }
+@container (max-width: 450px) {
+  .vg-columns { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s1); }
+  .vg-col { padding: 6px; }
+  .vg-col:first-child { display: none; }
+  .vg-card, .vg-card.is-active { padding: 0 var(--s1); }
+  .vg-card em { font-size: 12px; }
+  .vg-board .vg-mover { --hop: 20px; }
+}
+@supports not (container-type: inline-size) {
+  @media (max-width: 520px) {
+    .vg-columns { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s1); }
+    .vg-col { padding: 6px; }
+    .vg-col:first-child { display: none; }
+    .vg-card, .vg-card.is-active { padding: 0 var(--s1); }
+    .vg-board .vg-mover { --hop: 20px; }
+  }
+}
+
 
 /* Assist */
 .vg-draft { display: grid; gap: 8px; padding: 14px; border-radius: 10px; background: #f5f3ee; }
@@ -697,15 +717,7 @@ main[id], section[id] { scroll-margin-top: 104px; }
   .footer-main { grid-template-columns: 1fr 1fr; gap: 32px 20px; }
   .footer-main > div:last-child { grid-column: 1 / -1; }
   .footer-bottom { flex-direction: column; }
-  /* Board: a phone only has room for the two columns the story needs (Review → Done), so
-     labels stay whole and the moving card never spills over the next column. */
   .vg-body { padding: 14px; }
-  .vg-columns { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s1); }
-  .vg-col { padding: 6px; }
-  .vg-col:first-child { display: none; }
-  .vg-card { padding: 0 var(--s1); font-size: 12px; }
-  .vg-card em { font-size: 12px; }
-  .vg-board .vg-mover { --hop: 20px; }
   .chapter-visual { padding: 12px; border-radius: 20px; }
   .role-row { padding: 16px 16px 16px 18px; }
   .scope-strip { gap: 10px 18px; font-size: 14px; }
