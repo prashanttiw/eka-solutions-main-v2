@@ -651,20 +651,19 @@ main[id], section[id] { scroll-margin-top: 104px; }
 .places-grid i { width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid var(--blue); background: var(--blue-tint); }
 .places-grid i.is-taken { border-color: var(--ink); background: var(--ink); }
 .places-caption { max-width: 30ch; color: var(--ink-2); font-size: 15px; line-height: 1.5; }
-.places.card { padding: var(--s4); }
 .places-dark { padding-left: clamp(0px, 4vw, 48px); border-left: 1px solid var(--line-light); }
 .places-dark .places-number { color: var(--sky); }
 .places-dark .places-grid i { border-color: rgba(169, 198, 242, .7); background: transparent; }
 .places-dark .places-grid i.is-taken { border-color: #fff; background: #fff; }
 .places-dark .places-caption { color: #b6c1d4; }
-.founding-why { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); align-items: center; gap: 40px clamp(40px, 6vw, 96px); }
-.founding-why .lede { margin-top: 26px; max-width: 42ch; }
-.founding-why .body { margin-top: 16px; }
-.included-list { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; margin: 0; padding: 0; list-style: none; }
-.included-list li { grid-column: span 2; display: flex; flex-direction: column; gap: 12px; padding: 28px; }
-.included-list li:nth-child(n+4) { grid-column: span 3; }
-.included-list span { width: 32px; height: 32px; display: grid; place-items: center; margin-bottom: 24px; border-radius: 50%; background: var(--blue); color: #fff; font-size: 13px; font-weight: 600; }
-.included-list p { color: var(--ink-2); font-size: 16px; line-height: 1.6; }
+.founding-note { max-width: 52ch; margin-top: var(--s2); color: #b6c1d4; font-size: 16px; line-height: 1.6; }
+/* The five commitments as a ledger: what you get on the left, what it means on the right. */
+.ledger { margin: 0; padding: 0; list-style: none; border-bottom: 1px solid var(--line); }
+.ledger li { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: baseline; gap: var(--s1) var(--s6); padding: var(--s4) 0; border-top: 1px solid var(--line-strong); }
+.ledger p { max-width: 56ch; color: var(--ink-2); font-size: 17px; line-height: 1.6; }
+.apply-title { max-width: 18ch; margin-bottom: clamp(40px, 5vw, 64px); }
+.path-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.path-3 .path-line { color: var(--ink-2); font-size: 16px; }
 .terms-list { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line-strong); }
 .terms-list li { padding: 24px 0; border-bottom: 1px solid var(--line); }
 .terms-list strong { display: block; font-size: 19px; font-weight: 600; letter-spacing: -.012em; }
@@ -731,7 +730,8 @@ main[id], section[id] { scroll-margin-top: 104px; }
   .page-index ul { flex-direction: column; }
   .page-index li + li a { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
   .page-index a { padding-right: 0; }
-  .voices-layout, .notes, .founding-band, .founding-why { grid-template-columns: 1fr; }
+  .voices-layout, .notes, .founding-band, .ledger li { grid-template-columns: 1fr; }
+  .ledger li { padding: var(--s3) 0; }
   .annotations li { grid-template-columns: 1fr; gap: var(--s1); padding: var(--s3) 0; }
   .notes li, .notes li + li { padding: var(--s3) 0; border-left: 0; border-bottom: 1px solid var(--line); }
   .moment { justify-items: start; text-align: left; }
@@ -741,8 +741,6 @@ main[id], section[id] { scroll-margin-top: 104px; }
   .places-dark { padding: var(--s3) 0 0; border-left: 0; border-top: 1px solid var(--line-light); }
   .places-grid { grid-template-columns: repeat(5, 10px); gap: 7px; }
   .places-grid i { width: 10px; height: 10px; }
-  .included-list { grid-template-columns: 1fr; }
-  .included-list li, .included-list li:nth-child(n+4) { grid-column: auto; }
   .voice-quote { font-size: clamp(24px, 6.6vw, 30px); }
   .service-frame { display: flex; gap: 12px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter); margin-inline: calc(var(--gutter) * -1); padding: 0 var(--gutter) 4px; border: 0; border-radius: 0; background: none; scrollbar-width: none; }
   .service-frame::-webkit-scrollbar { display: none; }

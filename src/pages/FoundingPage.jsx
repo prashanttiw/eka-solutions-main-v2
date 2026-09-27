@@ -42,15 +42,15 @@ export default function FoundingPage() {
         </div>
       </header>
 
-      <section className="section tone-raised" aria-labelledby="why-title">
-        <div className="wrap founding-why">
-          <div>
-            <Eyebrow>Why twenty-five</Eyebrow>
-            <h2 id="why-title" className="h-section">Founder time is the one thing that <em>does not scale.</em></h2>
-            <p className="lede">Two founders can give their full attention to a limited number of projects. Twenty-five is our honest estimate of that limit.</p>
-            <p className="body">This is not a discount and there is no countdown clock. When the twenty-fifth place is taken, the programme closes, and it will not come back later at a higher price.</p>
+      <section className="section band-ink" aria-labelledby="why-title">
+        <div className="wrap founding-band">
+          <div className="founding-copy">
+            <p className="band-label"><span className="band-dot" aria-hidden="true" />Why twenty-five</p>
+            <h2 id="why-title" className="h-section">Founder time is the one thing that does not scale.</h2>
+            <p className="founding-promise">Two founders can give their full attention to a limited number of projects. Twenty-five is our honest estimate of that limit.</p>
+            <p className="founding-note">This is not a discount and there is no countdown clock. When the twenty-fifth place is taken, the programme closes, and it will not come back later at a higher price.</p>
           </div>
-          <FoundingPlaces className="card" />
+          <FoundingPlaces tone="dark" />
         </div>
       </section>
 
@@ -59,28 +59,24 @@ export default function FoundingPage() {
           <div className="split-head">
             <div>
               <Eyebrow>What a founding place includes</Eyebrow>
-              <h2 id="included-title" className="h-section">The people who started EKA, <em>on your project.</em></h2>
+              <h2 id="included-title" className="h-section">The people who started EKA, on your project.</h2>
             </div>
             <p className="body">Five commitments we can keep for every one of the twenty-five, without exception.</p>
           </div>
-          <ol className="included-list">
-            {INCLUDED.map(([title, text], index) => (
-              <li className="card" key={title}>
-                <span>{index + 1}</span>
+          <ul className="ledger">
+            {INCLUDED.map(([title, text]) => (
+              <li key={title}>
                 <h3 className="h-card">{title}</h3>
                 <p>{text}</p>
               </li>
             ))}
-          </ol>
+          </ul>
         </div>
       </section>
 
       <section className="section tone-sunken" aria-labelledby="terms-title">
         <div className="wrap two-col">
-          <div>
-            <Eyebrow>How places work</Eyebrow>
-            <h2 id="terms-title" className="h-section">Plain terms, <em>no small print.</em></h2>
-          </div>
+          <h2 id="terms-title" className="h-section">Plain terms, no small print.</h2>
           <ul className="terms-list">
             {TERMS.map(([title, text]) => <li key={title}><strong>{title}</strong><p>{text}</p></li>)}
           </ul>
@@ -89,12 +85,14 @@ export default function FoundingPage() {
 
       <section className="section" aria-labelledby="apply-title">
         <div className="wrap">
-          <div className="intro-block">
-            <Eyebrow>How to apply</Eyebrow>
-            <h2 id="apply-title" className="h-section">Three steps to a <em>first conversation.</em></h2>
-          </div>
-          <ol className="steps">
-            {STEPS.map(([title, text]) => <li key={title}><strong>{title}</strong><p>{text}</p></li>)}
+          <h2 id="apply-title" className="h-section apply-title">Three steps to a first conversation.</h2>
+          <ol className="path path-3">
+            {STEPS.map(([title, text]) => (
+              <li key={title}>
+                <h3 className="path-verb">{title}</h3>
+                <p className="path-line">{text}</p>
+              </li>
+            ))}
           </ol>
         </div>
       </section>
