@@ -1,29 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import ArrowUpRight from 'lucide-react/dist/esm/icons/arrow-up-right';
-import PageHeader from '../components/PageHeader';
+import { Button, Eyebrow } from '../components/ui';
+
 export default function NotFoundPage() {
   return (
-    <PageHeader
-      eyebrow="404 / Page not found"
-      title={
-        <>
-          Let’s get you
-          <br />
-          <span className="text-[var(--blue)]">back on track.</span>
-        </>
-      }
-        lead="This page may have moved, or the address may be incorrect. Head to the homepage or contact EKA for help."
-    >
-      <div className="flex flex-wrap gap-4 mt-6">
-        <Link to="/" className="btn-ink">
-          Back to home
-          <ArrowUpRight size={16} aria-hidden="true" />
-        </Link>
-        <Link to="/contact" className="editorial-link">
-          Contact EKA
-        </Link>
+    <div className="notfound-page section">
+      <div className="wrap">
+        <Eyebrow>Page not found</Eyebrow>
+        <h1 className="h-display">This path does not <em>go anywhere.</em></h1>
+        <p className="body">The link may be old, or the address mistyped. Start again from the homepage, or tell us what you were looking for.</p>
+        <div className="actions">
+          <Button to="/" dir="back">Back to home</Button>
+          <Button to="/contact" variant="ghost">Contact EKA</Button>
+        </div>
       </div>
-    </PageHeader>
+    </div>
   );
 }

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="680" viewBox="0 0 800 680" role="img" aria-labelledby="title description">
+  <title id="title">From friction to flow</title>
+  <desc id="description">Irregular routes on the left are gathered into one clear path on the right.</desc>
+  <rect width="800" height="680" fill="#e9e6dc"/>
+  <g stroke="#17304d" stroke-opacity=".13" stroke-width="1">
+    <path d="M0 80H800M0 160H800M0 240H800M0 320H800M0 400H800M0 480H800M0 560H800M0 640H800"/>
+    <path d="M80 0V680M160 0V680M240 0V680M320 0V680M400 0V680M480 0V680M560 0V680M640 0V680M720 0V680"/>
+  </g>
+  <g fill="none" stroke="#17304d" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M69 162C118 142 127 220 177 206S209 120 266 150 289 257 352 238 383 218 437 290 500 310 542 330"/>
+    <path d="M58 287C105 271 125 299 171 277S205 330 250 344 282 272 331 302 365 380 416 354 487 338 542 330"/>
+    <path d="M67 443C118 425 145 479 188 444S219 385 270 407 293 462 355 435 400 386 448 374 497 357 542 330"/>
+    <path d="M542 330H724" stroke="#2854d9" stroke-width="5"/>
+  </g>
+  <g fill="#e26046" stroke="#e9e6dc" stroke-width="6">
+    <circle cx="69" cy="162" r="8"/><circle cx="58" cy="287" r="8"/><circle cx="67" cy="443" r="8"/>
+  </g>
+  <circle cx="542" cy="330" r="14" fill="#2854d9" stroke="#e9e6dc" stroke-width="7"/>
+  <path d="m716 318 16 12-16 12" fill="none" stroke="#2854d9" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="#17304d" font-family="monospace" font-size="12" letter-spacing="2">
+    <text x="58" y="555">QUESTIONS</text><text x="498" y="285">DECISION</text><text x="616" y="287">DIRECTION</text>
+  </g>
+  <path d="M52 588H748" stroke="#17304d" stroke-opacity=".35"/>
+  <g fill="#17304d" font-family="monospace" font-size="12" letter-spacing="2"><text x="52" y="617">EKA / WORKING NOTES</text><text x="620" y="617">FIG. 01 — FLOW</text></g>
+</svg>

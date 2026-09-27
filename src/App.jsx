@@ -3,25 +3,23 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import RootLayout from './layouts/RootLayout';
 import HomePage from './pages/HomePage';
 
-/** Each inner page is loaded on demand. The shared shell preserves the navigation
- * and animated footer as visitors move between routes. */
+/** Inner pages load on demand; the shared navigation and footer stay mounted. */
 const AboutPage = lazy(() => import('./pages/AboutPage'));
 const ServicesPage = lazy(() => import('./pages/ServicesPage'));
 const PlaybookPage = lazy(() => import('./pages/PlaybookPage'));
 const WorkPage = lazy(() => import('./pages/WorkPage'));
 const CareersPage = lazy(() => import('./pages/CareersPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
+const FoundingPage = lazy(() => import('./pages/FoundingPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 /**
  * What sits there while a page's chunk arrives.
  *
- * Deliberately blank rather than a spinner. On a local network the chunk lands inside a
- * frame or two and a spinner would only ever be seen as a flash of something breaking;
- * the height is what matters, so the footer does not jump up the screen and back down.
+ * A stable blank area keeps the footer from jumping up while a route chunk arrives.
  */
 function PageFallback() {
-  return <div aria-hidden="true" className="min-h-[70svh]" />;
+  return <div aria-hidden="true" className="page-fallback" />;
 }
 
 const page = (element) => <Suspense fallback={<PageFallback />}>{element}</Suspense>;
@@ -38,6 +36,7 @@ export default function App() {
           <Route path="work" element={page(<WorkPage />)} />
           <Route path="careers" element={page(<CareersPage />)} />
           <Route path="contact" element={page(<ContactPage />)} />
+          <Route path="founding-25" element={page(<FoundingPage />)} />
           <Route path="*" element={page(<NotFoundPage />)} />
         </Route>
       </Routes>
