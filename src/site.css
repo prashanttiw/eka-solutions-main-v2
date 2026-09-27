@@ -16,13 +16,24 @@
   font-style: italic;
   font-display: swap;
 }
-/* Metric-matched fallback so text does not jump when the web font arrives. */
+/* Metric-matched fallbacks so text does not jump when the web fonts arrive. The serif
+   values come from measuring Instrument Serif Italic against Georgia Italic (78% of the
+   width); Android has no Georgia, so Noto Serif Italic stands in with the same scale. */
 @font-face {
   font-family: 'Instrument Sans Fallback';
   src: local('Arial');
   size-adjust: 96%;
   ascent-override: 98%;
   descent-override: 25%;
+}
+@font-face {
+  font-family: 'Instrument Serif Fallback';
+  src: local('Georgia Italic'), local('Georgia-Italic'), local('Noto Serif Italic'), local('NotoSerif-Italic');
+  font-style: italic;
+  size-adjust: 78.4%;
+  ascent-override: 126%;
+  descent-override: 40%;
+  line-gap-override: 0%;
 }
 
 :root {
@@ -56,7 +67,7 @@
   --s12: 96px;
   --section: clamp(64px, 9vw, 128px);
   --sans: 'Instrument Sans', 'Instrument Sans Fallback', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --serif: 'Instrument Serif', 'Instrument Serif Fallback', Georgia, 'Times New Roman', serif;
   --ease: cubic-bezier(.2, .8, .2, 1);
 }
 
