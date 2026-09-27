@@ -635,21 +635,23 @@ main[id], section[id] { scroll-margin-top: 104px; }
 .band-ink .text-link:hover { color: var(--sky); }
 .band-label { display: inline-flex; align-items: center; gap: 10px; margin-bottom: var(--s3); color: var(--sky); font-size: 14px; font-weight: 600; }
 .band-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: #5fd08c; }
-.founding-band { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: end; gap: var(--s6) clamp(48px, 7vw, 112px); }
+.founding-band { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: center; gap: var(--s6) clamp(48px, 7vw, 112px); }
 .founding-band .h-section { max-width: 15ch; }
 .founding-promise { max-width: 48ch; margin-top: var(--s3); color: #c9d4e8; font-size: clamp(17px, 1.4vw, 19px); line-height: 1.6; }
 .founding-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2) var(--s4); margin-top: var(--s5); }
-.places { display: grid; gap: var(--s2); justify-items: start; }
-.places-mark { display: flex; align-items: center; gap: var(--s3); }
-.places-number { color: var(--blue); font: italic 400 clamp(72px, 9vw, 128px)/.8 var(--serif); letter-spacing: -.02em; }
-.places-grid { display: grid; grid-template-columns: repeat(5, 12px); gap: 9px; }
-.places-grid i { width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid var(--blue); background: var(--blue-tint); }
+/* The twenty-five places: a large serif numeral as tall as a 5 × 5 grid of tinted discs, so the
+   number and the places read as one mark. It scales down to a compact block on phones. */
+.places { display: grid; gap: var(--s3); justify-items: start; }
+.places-mark { display: flex; align-items: center; gap: clamp(20px, 2.4vw, 32px); }
+.places-number { color: var(--blue); font: italic 400 clamp(112px, 14vw, 216px)/.78 var(--serif); letter-spacing: -.03em; }
+.places-grid { --d: clamp(18px, 2.2vw, 32px); display: grid; grid-template-columns: repeat(5, var(--d)); gap: clamp(7px, .7vw, 10px); }
+.places-grid i { width: var(--d); height: var(--d); box-sizing: border-box; border-radius: 50%; border: 1.5px solid var(--blue); background: var(--blue-tint); }
 .places-grid i.is-taken { border-color: var(--ink); background: var(--ink); }
-.places-caption { max-width: 30ch; color: var(--ink-2); font-size: 15px; line-height: 1.5; }
-.places-dark { padding-left: clamp(0px, 4vw, 48px); border-left: 1px solid var(--line-light); }
+.places-caption { max-width: 30ch; color: var(--ink-2); font-size: 16px; line-height: 1.5; }
 .places-dark .places-number { color: var(--sky); }
-.places-dark .places-grid i { border-color: rgba(169, 198, 242, .7); background: transparent; }
-.places-dark .places-grid i.is-taken { border-color: #fff; background: #fff; }
+/* On the ink band an open place is a blue disc with a sky rim; a taken place fades to a ring. */
+.places-dark .places-grid i { border-color: rgba(169, 198, 242, .75); background: rgba(42, 82, 207, .85); }
+.places-dark .places-grid i.is-taken { border-color: rgba(169, 198, 242, .35); background: transparent; }
 .places-dark .places-caption { color: #b6c1d4; }
 .founding-note { max-width: 52ch; margin-top: var(--s2); color: #b6c1d4; font-size: 16px; line-height: 1.6; }
 /* The five commitments as a ledger: what you get on the left, what it means on the right. */
@@ -735,9 +737,6 @@ main[id], section[id] { scroll-margin-top: 104px; }
   .moment-links { justify-content: flex-start; }
   .statement-body { grid-column: 1 / -1; }
   .statement-line { padding-left: .9em; text-indent: -.9em; }
-  .places-dark { padding: var(--s3) 0 0; border-left: 0; border-top: 1px solid var(--line-light); }
-  .places-grid { grid-template-columns: repeat(5, 10px); gap: 7px; }
-  .places-grid i { width: 10px; height: 10px; }
   .voice-quote { font-size: clamp(24px, 6.6vw, 30px); }
   /* The same cards, side by side in a swipe row. The row's padding leaves room for the
      hover lift and the focus ring, which the scroll container would otherwise clip. */
