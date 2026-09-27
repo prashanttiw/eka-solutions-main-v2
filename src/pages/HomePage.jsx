@@ -103,20 +103,19 @@ export default function HomePage() {
       </section>
 
       <section className="section" aria-labelledby="friction-title">
-        <div className="wrap">
-          <div className="intro-block">
-            <Eyebrow>Where it starts</Eyebrow>
-            <h2 id="friction-title" className="h-section">The best brief often begins with <em>“this is frustrating.”</em></h2>
-            <p className="lede">That sentence tells us where to look. We trace the friction through the people, decisions and systems around it before we decide what to build.</p>
+        <div className="wrap voices-layout">
+          <div className="voices-intro">
+            <h2 id="friction-title" className="h-section">The best brief often begins with “this is frustrating.”</h2>
+            <p className="lede">That sentence tells us where to look. We follow it to the people and the tools involved before we suggest building anything.</p>
           </div>
-          <div className="symptom-grid">
+          <ul className="voices">
             {SYMPTOMS.map(([quote, underneath]) => (
-              <article className="symptom" key={quote}>
-                <p className="symptom-quote">{quote}</p>
-                <p className="symptom-under"><span>Usually underneath</span>{underneath}</p>
-              </article>
+              <li key={quote}>
+                <blockquote className="voice-quote">{quote}</blockquote>
+                <p className="voice-under"><span>Usually underneath:</span> {underneath}</p>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
