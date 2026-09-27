@@ -4,7 +4,7 @@ import { SERVICES } from '../lib/services';
 import { WHATSAPP_DISPLAY, whatsappHref } from '../lib/whatsapp';
 import { EMAIL } from './ui';
 
-const COMPANY = [['About', '/about'], ['Work', '/work'], ['Playbook', '/playbook'], ['Careers', '/careers']];
+const COMPANY = [['About', '/about'], ['Work', '/work'], ['Playbook', '/playbook'], ['Founding 25', '/founding-25'], ['Careers', '/careers']];
 
 /**
  * A quiet footer: the page's own closing card has already made the invitation, so this is

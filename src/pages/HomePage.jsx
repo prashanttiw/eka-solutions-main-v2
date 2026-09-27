@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button, ClosingCta, Eyebrow, TextLink } from '../components/ui';
 import { VIGNETTES } from '../components/vignetteList';
+import FoundingPlaces from '../components/FoundingPlaces';
+import { FOUNDING } from '../lib/founding';
 import { SERVICES } from '../lib/services';
 
 const SYMPTOMS = [
@@ -142,6 +144,23 @@ export default function HomePage() {
             ))}
           </ol>
           <TextLink to="/playbook">Read the full playbook</TextLink>
+        </div>
+      </section>
+
+      <section className="section section-flush-top" aria-labelledby="founding-title">
+        <div className="wrap">
+          <div className="founding-band">
+            <div>
+              <Eyebrow>Founding 25</Eyebrow>
+              <h2 id="founding-title" className="h-section">Our first 25 clients work directly <em>with the founders.</em></h2>
+              <p className="body">A personal reply, a working session with both founders, a written first plan and a direct line until launch. When the twenty-five places are taken, the programme closes.</p>
+              <div className="actions">
+                <Button to={FOUNDING.applyPath}>Apply for a place</Button>
+                <Button to="/founding-25" variant="ghost" dir="right">How it works</Button>
+              </div>
+            </div>
+            <FoundingPlaces />
+          </div>
         </div>
       </section>
 
