@@ -23,38 +23,8 @@ export function WhatsAppGlyph({ className = 'h-5 w-5' }) {
 
 export default function WhatsAppFloat() {
   return (
-    <div className="fixed bottom-5 right-4 z-[55] sm:bottom-6 sm:right-6">
-      <a
-        href={whatsappHref()}
-        target="_blank"
-        rel="noopener noreferrer"
-        data-cursor="chat"
-        aria-label={`Message EKA Solution on WhatsApp at ${WHATSAPP_DISPLAY}`}
-        className="group flex items-center rounded-full border border-[var(--ink)]/[0.08] bg-[var(--ink)] py-1.5 pl-1.5 pr-1.5 text-[#F7F6F1] shadow-quiet-card transition-shadow duration-300 hover:shadow-quiet-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ink)]"
-      >
-        {/* The reveal: a zero-width grid track that eases open to its content width. */}
-        <span className="grid grid-cols-[0fr] transition-[grid-template-columns] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:grid-cols-[1fr] group-focus-visible:grid-cols-[1fr] motion-reduce:transition-none">
-          <span className="min-w-0 overflow-hidden">
-            <span className="flex flex-col pl-3.5 pr-3 text-left">
-              <span className="whitespace-nowrap font-mono text-[9px] font-semibold uppercase tracking-[0.22em] text-[#F7F6F1]/55">
-                WhatsApp us
-              </span>
-              <span className="whitespace-nowrap font-display text-sm font-bold leading-tight tracking-tight">
-                {WHATSAPP_DISPLAY}
-              </span>
-            </span>
-          </span>
-        </span>
-
-        <span className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#F7F6F1] text-[var(--ink)] transition-transform duration-300 group-hover:scale-[1.04]">
-          <WhatsAppGlyph className="h-[22px] w-[22px]" />
-          {/* Quiet "we're here" pulse — one dot, no colour, no bounce. */}
-          <span className="absolute -right-0.5 -top-0.5 flex h-2.5 w-2.5">
-            <span className="absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-70 motion-safe:animate-ping" />
-            <span className="relative inline-flex h-2.5 w-2.5 rounded-full border-2 border-[var(--ink)] bg-[#25D366]" />
-          </span>
-        </span>
-      </a>
-    </div>
+    <a href={whatsappHref()} target="_blank" rel="noopener noreferrer" className="v2-whatsapp" aria-label={`Message EKA Solution on WhatsApp at ${WHATSAPP_DISPLAY}`}>
+      <WhatsAppGlyph />
+    </a>
   );
 }
