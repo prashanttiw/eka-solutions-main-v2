@@ -525,10 +525,11 @@ main[id], section[id] { scroll-margin-top: 104px; }
 .case-meta dt { color: var(--ink-3); font-size: 13px; }
 .case-meta dd { margin: 2px 0 0; font-size: 15px; font-weight: 600; }
 .case-copy .body + .body { margin-top: 14px; }
-.decision-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-.decision-card { padding: 28px; }
-.decision-card small { display: block; margin-bottom: 36px; color: var(--blue); font-size: 13px; font-weight: 600; }
-.decision-card p { margin-top: 12px; color: var(--ink-2); font-size: 16px; line-height: 1.6; }
+/* Decisions as annotations: a label, a title and a note on one hairline row each. */
+.annotations { margin: 0; padding: 0; list-style: none; border-bottom: 1px solid var(--line); }
+.annotations li { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 4fr) minmax(0, 6fr); align-items: baseline; gap: var(--s2) var(--s4); padding: var(--s4) 0; border-top: 1px solid var(--line-strong); }
+.annotation-tag { color: var(--blue); font-size: 14px; font-weight: 600; }
+.annotation-text { max-width: 54ch; color: var(--ink-2); font-size: 16px; line-height: 1.6; }
 .honesty-note { max-width: 70ch; margin-top: 32px; color: var(--ink-3); font-size: 15px; line-height: 1.6; }
 
 /* ---------- Playbook ---------- */
@@ -724,7 +725,8 @@ main[id], section[id] { scroll-margin-top: 104px; }
   .page-index ul { flex-direction: column; }
   .page-index li + li a { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
   .page-index a { padding-right: 0; }
-  .voices-layout, .notes, .decision-cards, .after-hello, .founding-band, .founding-why { grid-template-columns: 1fr; }
+  .voices-layout, .notes, .after-hello, .founding-band, .founding-why { grid-template-columns: 1fr; }
+  .annotations li { grid-template-columns: 1fr; gap: var(--s1); padding: var(--s3) 0; }
   .notes li, .notes li + li { padding: var(--s3) 0; border-left: 0; border-bottom: 1px solid var(--line); }
   .moment { justify-items: start; text-align: left; }
   .moment-links { justify-content: flex-start; }

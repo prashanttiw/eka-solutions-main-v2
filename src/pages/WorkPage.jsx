@@ -26,7 +26,15 @@ export default function WorkPage() {
         <div className="wrap case-feature">
           <figure className="browser">
             <div className="vg-bar"><i /><i /><i /><span>ekasolution.com</span></div>
-            <img src="/assets/work-eka-home.webp" alt="The EKA Solution homepage: the headline “Make the complex clear.” beside a diagram of three paths joining into one" width="1440" height="900" loading="lazy" decoding="async" />
+            <img
+              src="/assets/work-eka-home.webp"
+              srcSet="/assets/work-eka-home-720.webp 720w, /assets/work-eka-home.webp 1200w"
+              sizes="(max-width: 1080px) calc(100vw - 40px), 700px"
+              alt="The EKA Solution homepage: the headline “Make the complex clear.” beside a diagram of three paths joining into one"
+              width="1200"
+              height="750"
+              decoding="async"
+            />
           </figure>
           <div className="case-copy">
             <Eyebrow>In-house project</Eyebrow>
@@ -45,27 +53,24 @@ export default function WorkPage() {
       <section className="section" aria-labelledby="decisions-title">
         <div className="wrap">
           <div className="split-head">
-            <div>
-              <Eyebrow>Notes from the process</Eyebrow>
-              <h2 id="decisions-title" className="h-section">Three decisions behind the page.</h2>
-            </div>
+            <h2 id="decisions-title" className="h-section">Three decisions behind the page.</h2>
             <TextLink to="/playbook">See the process we followed</TextLink>
           </div>
-          <div className="decision-cards">
+          <ol className="annotations">
             {DECISIONS.map(([tag, title, body]) => (
-              <article className="decision-card card" key={tag}>
-                <small>{tag}</small>
+              <li key={tag}>
+                <p className="annotation-tag">{tag}</p>
                 <h3 className="h-card">{title}</h3>
-                <p>{body}</p>
-              </article>
+                <p className="annotation-text">{body}</p>
+              </li>
             ))}
-          </div>
+          </ol>
           <p className="honesty-note">These notes describe this website only. They make no claims about results for unnamed clients.</p>
         </div>
       </section>
 
-      <ClosingCta eyebrow="Your project" title={<>A different context. <em>Same care.</em></>}>
-        Tell us what needs to change. We will start by understanding it.
+      <ClosingCta eyebrow="Your project" title={<>Could yours be the next one <em>on this page?</em></>}>
+        Tell us what needs to change. If we work together and you are happy to share it, your project could be the next case we write up here.
       </ClosingCta>
     </div>
   );
