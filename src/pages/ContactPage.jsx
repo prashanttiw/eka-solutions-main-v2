@@ -1,11 +1,19 @@
 import React, { useState } from 'react';
+import { Arrow, Button, EMAIL, Eyebrow } from '../components/ui';
+import { WHATSAPP_DISPLAY, whatsappHref } from '../lib/whatsapp';
 
 const START = { name: '', email: '', subject: '', context: '', timing: '' };
 
+const AFTER = [
+  ['We listen', 'A short call about the situation, the people involved and what is at stake.'],
+  ['We name the decision', 'We write back with what we heard and the question the project needs to answer.'],
+  ['We suggest a first step', 'A small, practical next move you can act on straight away.'],
+];
+
 function makeEmail(form) {
   const subject = `Project conversation — ${form.subject.trim() || 'New enquiry'}`;
-  const body = [`Hello EKA,`, '', `I am ${form.name.trim()} (${form.email.trim()}).`, '', `What I am working on: ${form.subject.trim()}`, '', `The situation:`, form.context.trim(), '', `Timing: ${form.timing.trim() || 'To discuss'}`].join('\n');
-  return { text: body, href: `mailto:contact@ekasolution.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}` };
+  const body = ['Hello EKA,', '', `I am ${form.name.trim()} (${form.email.trim()}).`, '', `What I am working on: ${form.subject.trim() || 'Not specified'}`, '', 'The situation:', form.context.trim(), '', `Timing: ${form.timing.trim() || 'To discuss'}`].join('\n');
+  return { text: body, href: `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}` };
 }
 
 export default function ContactPage() {
@@ -14,6 +22,7 @@ export default function ContactPage() {
   const [error, setError] = useState('');
   const [copied, setCopied] = useState(false);
   const email = makeEmail(form);
+  const update = (field) => (event) => setForm((current) => ({ ...current, [field]: event.target.value }));
 
   const prepare = (event) => {
     event.preventDefault();
@@ -22,17 +31,82 @@ export default function ContactPage() {
       return;
     }
     setError('');
+    setCopied(false);
     setReview(true);
   };
 
   const copy = async () => {
-    try { await navigator.clipboard.writeText(email.text); setCopied(true); }
-    catch { setCopied(false); }
+    try { await navigator.clipboard.writeText(email.text); setCopied(true); } catch { setCopied(false); }
   };
 
-  return <div className="contact-page">
-    <header className="contact-hero ink-section section-pad"><div className="site-wrap contact-hero-grid"><div><p className="eyebrow"><span className="eyebrow-mark" /> Contact / Start anywhere</p><h1 className="display-title">Bring the rough <em>version first.</em></h1></div><p>Half formed is fine. Tell us what is happening, who it affects and what you hope could be different.</p></div></header>
-    <section className="contact-main section-pad paper-surface"><div className="site-wrap contact-grid"><aside><p className="eyebrow">01 / Start a conversation</p><h2 className="display-title">A useful note beats a perfect brief.</h2><p>We will help frame the problem together. The form prepares an email in your own email app so you can review it before sending.</p><div className="contact-direct"><span>Or write directly</span><a href="mailto:contact@ekasolution.com">contact@ekasolution.com ↗</a></div></aside><div className="contact-sheet"><div className="sheet-top"><span>EKA / PROJECT NOTE</span><span>001</span></div>{!review ? <form onSubmit={prepare} noValidate><h3>Tell us what is on your mind.</h3><div className="form-pair"><label>Your name <input name="name" value={form.name} autoComplete="name" onChange={(event) => setForm({ ...form, name: event.target.value })} required /></label><label>Email address <input type="email" name="email" value={form.email} autoComplete="email" onChange={(event) => setForm({ ...form, email: event.target.value })} required /></label></div><label>What are you working on? <input name="subject" placeholder="A short working title is enough" value={form.subject} onChange={(event) => setForm({ ...form, subject: event.target.value })} /></label><label>What is happening now? <textarea name="context" rows="6" placeholder="Where is the friction? What would you like to change?" value={form.context} onChange={(event) => setForm({ ...form, context: event.target.value })} required /></label><label>Timing <span>Optional</span><input name="timing" placeholder="To discuss, or a rough date" value={form.timing} onChange={(event) => setForm({ ...form, timing: event.target.value })} /></label>{error && <p className="form-error" role="alert">{error}</p>}<button type="submit" className="button button-primary">Review your note <span aria-hidden="true">↗</span></button></form> : <div className="contact-review"><h3>Ready to open in your email app.</h3><p>Read it once, make any changes you like, then send it from your own account.</p><pre>{email.text}</pre><div className="contact-review-actions"><a className="button button-primary" href={email.href}>Open email app <span aria-hidden="true">↗</span></a><button type="button" className="button button-outline" onClick={copy}>{copied ? 'Copied' : 'Copy note'} <span aria-hidden="true">↗</span></button></div><button type="button" className="text-link" onClick={() => setReview(false)}>Edit the note <span aria-hidden="true">↶</span></button></div>}<div className="sheet-bottom"><span>Private until you choose to send it</span><span>— EKA Solution</span></div></div></div></section>
-    <section className="contact-end section-pad"><div className="site-wrap"><p className="eyebrow">02 / First conversation</p><h2 className="display-title">What happens <em>after hello?</em></h2><div className="contact-next-row"><span>We listen to the situation.</span><span>We name the decision.</span><span>We agree on a useful next step.</span></div></div></section>
-  </div>;
+  return (
+    <div className="contact-page">
+      <header className="page-hero">
+        <div className="wrap page-hero-grid">
+          <div>
+            <Eyebrow>Contact</Eyebrow>
+            <h1 className="h-display">Bring the rough version <em>first.</em></h1>
+          </div>
+          <div className="page-hero-aside">
+            <p className="lede">Half-formed is fine. Tell us what is happening, who it affects and what you hope could be different.</p>
+          </div>
+        </div>
+      </header>
+
+      <section className="section tone-sunken" aria-labelledby="note-title">
+        <div className="wrap contact-grid">
+          <aside className="contact-aside">
+            <Eyebrow>Start a conversation</Eyebrow>
+            <h2 id="note-title" className="h-section">A useful note beats a perfect brief.</h2>
+            <p className="body">We will help frame the problem together. The form prepares an email in your own app, so you can read it before anything is sent.</p>
+            <ul className="contact-direct">
+              <li><a href={`mailto:${EMAIL}`}><span><small>Email</small><strong>{EMAIL}</strong></span><Arrow /></a></li>
+              <li><a href={whatsappHref()} target="_blank" rel="noopener noreferrer"><span><small>WhatsApp</small><strong>{WHATSAPP_DISPLAY}</strong></span><Arrow /></a></li>
+            </ul>
+          </aside>
+
+          <div className="contact-sheet card">
+            {!review ? (
+              <form onSubmit={prepare} noValidate>
+                <h3 className="h-card">Tell us what is on your mind.</h3>
+                <div className="form-pair">
+                  <label className="field">Your name<input name="name" value={form.name} autoComplete="name" onChange={update('name')} required /></label>
+                  <label className="field">Email address<input type="email" name="email" value={form.email} autoComplete="email" onChange={update('email')} required /></label>
+                </div>
+                <label className="field">What are you working on?<input name="subject" placeholder="A short working title is enough" value={form.subject} onChange={update('subject')} /></label>
+                <label className="field">What is happening now?<textarea name="context" rows="6" placeholder="Where is the friction? What would you like to change?" value={form.context} onChange={update('context')} required /></label>
+                <label className="field"><span className="field-label">Timing<span className="field-hint">Optional</span></span><input name="timing" placeholder="To discuss, or a rough date" value={form.timing} onChange={update('timing')} /></label>
+                {error && <p className="form-error" role="alert">{error}</p>}
+                <Button type="submit" className="btn-block" dir="right">Review your note</Button>
+              </form>
+            ) : (
+              <div className="contact-review">
+                <h3 className="h-card">Ready to open in your email app.</h3>
+                <p>Read it once, change anything you like, then send it from your own account.</p>
+                <pre>{email.text}</pre>
+                <div className="actions">
+                  <Button href={email.href}>Open email app</Button>
+                  <Button variant="ghost" dir="right" onClick={copy}>{copied ? 'Copied' : 'Copy note'}</Button>
+                </div>
+                <button type="button" className="text-link" onClick={() => setReview(false)}><Arrow dir="back" /><span>Edit the note</span></button>
+              </div>
+            )}
+            <p className="contact-sheet-note">Nothing is sent from this page. It stays private until you send it yourself.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="section" aria-labelledby="after-title">
+        <div className="wrap">
+          <div className="intro-block">
+            <Eyebrow>After you say hello</Eyebrow>
+            <h2 id="after-title" className="h-section">What happens <em>next.</em></h2>
+          </div>
+          <ol className="after-hello">
+            {AFTER.map(([title, text], index) => <li className="card" key={title}><span>{index + 1}</span><strong>{title}</strong><p>{text}</p></li>)}
+          </ol>
+        </div>
+      </section>
+    </div>
+  );
 }

@@ -1,25 +1,28 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { Arrow, Button, ClosingCta, EMAIL, Eyebrow } from '../components/ui';
 
 // The six role titles are draft content restored for the owner's design review.
 const ROLES = [
-  { title: 'Staff Engineer, Platform', level: 'Staff', area: 'Engineering', detail: 'Shape the foundations that make complex products understandable and reliable.' },
-  { title: 'AI Systems Engineer', level: 'Senior', area: 'Engineering', detail: 'Build and evaluate useful automation with clear boundaries and human review.' },
-  { title: 'Site Reliability Engineer', level: 'Senior', area: 'Operations', detail: 'Help teams see, understand and improve how their systems behave in use.' },
-  { title: 'Product Designer', level: 'Senior', area: 'Design', detail: 'Work close to the build, turning hard workflows into coherent experiences.' },
-  { title: '3D & Motion Engineer', level: 'Mid–Senior', area: 'Creative technology', detail: 'Make expressive interfaces that still run well on ordinary devices.' },
-  { title: 'Engineering Manager', level: 'Lead', area: 'Leadership', detail: 'Give teams the context, standards and space to do thoughtful work.' },
+  { title: 'Staff Engineer, Platform', level: 'Staff', area: 'Engineering' },
+  { title: 'AI Systems Engineer', level: 'Senior', area: 'Engineering' },
+  { title: 'Site Reliability Engineer', level: 'Senior', area: 'Operations' },
+  { title: 'Product Designer', level: 'Senior', area: 'Design' },
+  { title: '3D & Motion Engineer', level: 'Mid–Senior', area: 'Creative technology' },
+  { title: 'Engineering Manager', level: 'Lead', area: 'Leadership' },
 ];
 
 const PROCESS = [
-  ['01', 'Introduction', 'A conversation about your work and what matters to you.'],
-  ['02', 'The work', 'We look at a project or problem you know well.'],
-  ['03', 'Mutual fit', 'We talk through expectations, collaboration and next steps.'],
+  ['Introduction', 'A conversation about your work and what matters to you.'],
+  ['The work', 'We look together at a project or problem you know well.'],
+  ['Mutual fit', 'We talk through expectations, collaboration and next steps.'],
 ];
+
+const OPEN_INTRO = { title: 'Open introduction', area: 'Any discipline', level: 'Open' };
 
 function prepareApplication(role, form) {
   const subject = `EKA introduction — ${role?.title || 'Open introduction'}`;
-  const body = [`Hello EKA,`, '', `I am interested in: ${role?.title || 'A future opportunity'}`, `Name: ${form.name.trim()}`, `Email: ${form.email.trim()}`, `Portfolio / profile: ${form.link.trim() || 'Not provided'}`, '', form.note.trim(), '', 'I will attach my CV or work samples in my email app.'].join('\n');
-  return `mailto:contact@ekasolution.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const body = ['Hello EKA,', '', `I am interested in: ${role?.title || 'A future opportunity'}`, `Name: ${form.name.trim()}`, `Email: ${form.email.trim()}`, `Portfolio / profile: ${form.link.trim() || 'Not provided'}`, '', form.note.trim(), '', 'I will attach my CV or work samples in my email app.'].join('\n');
+  return `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
 export default function CareersPage() {
@@ -28,15 +31,20 @@ export default function CareersPage() {
   const [error, setError] = useState('');
   const [ready, setReady] = useState(false);
   const cardTitleRef = useRef(null);
+  const update = (field) => (event) => setForm((current) => ({ ...current, [field]: event.target.value }));
 
   useEffect(() => {
-    if (selected) cardTitleRef.current?.focus();
+    if (selected) cardTitleRef.current?.focus({ preventScroll: true });
   }, [selected]);
 
   const choose = (role) => {
     setSelected(role);
     setReady(false);
     setError('');
+    // On a single-column layout the card sits below the list; bring it into view.
+    if (window.matchMedia('(max-width: 1080px)').matches) {
+      document.getElementById('careers-card')?.scrollIntoView({ block: 'start' });
+    }
   };
 
   const submit = (event) => {
@@ -53,14 +61,91 @@ export default function CareersPage() {
     setReady(true);
   };
 
-  return <div className="careers-page">
-    <header className="careers-hero paper-surface section-pad"><div className="site-wrap"><p className="eyebrow"><span className="eyebrow-mark" /> Careers / People who care about the work</p><div className="careers-hero-grid"><h1 className="display-title">Good work takes <em>good company.</em></h1><p>We are drawn to people who ask careful questions, make complex things easier to use and keep learning after the launch.</p></div><div className="careers-hero-bottom"><span>Curiosity</span><span>Clarity</span><span>Craft</span></div></div></header>
+  return (
+    <div className="careers-page">
+      <header className="page-hero">
+        <div className="wrap page-hero-grid">
+          <div>
+            <Eyebrow>Careers</Eyebrow>
+            <h1 className="h-display">Good work takes <em>good company.</em></h1>
+          </div>
+          <div className="page-hero-aside">
+            <p className="lede">We are drawn to people who ask careful questions, make complex things easier to use and keep learning after the launch.</p>
+          </div>
+        </div>
+      </header>
 
-    <section className="careers-main section-pad" id="openings"><div className="site-wrap"><div className="section-heading section-heading-split"><p className="eyebrow">01 / Roles in review</p><h2 className="display-title">Find the work that <em>sounds like you.</em></h2><p>These draft role listings are here for review. Availability and details will be confirmed before publication.</p></div>
-      <div className="careers-layout"><div className="roles-column"><div className="roles-topline"><span>Role index</span><span>06 / Draft listings</span></div><div className="roles-list">{ROLES.map((role, index) => <button type="button" key={role.title} className={`role-row ${selected?.title === role.title ? 'selected' : ''}`} onClick={() => choose(role)} aria-controls="careers-card" aria-expanded={selected?.title === role.title}><span className="index-number">0{index + 1}</span><span className="role-row-main"><strong>{role.title}</strong><small>{role.area} / {role.level}</small></span><span className="role-row-arrow" aria-hidden="true">↗</span></button>)}</div><p className="roles-aside">Different background? <button type="button" onClick={() => choose({ title: 'Open introduction', area: 'Your area', level: 'Open' })}>Introduce yourself anyway ↗</button></p></div>
-      <div className="career-card-wrap" id="careers-card"><div className={`career-card ${selected ? 'is-flipped' : ''} ${ready ? 'is-ready' : ''}`}><div className="career-card-face career-card-front" inert={Boolean(selected) || undefined}><div className="career-card-top"><span className="eyebrow">Hiring / A short guide</span><span aria-hidden="true">EKA—01</span></div><h3>First, let’s talk about the work.</h3><p className="career-card-intro">We care about how you think, what you make and what you want to get better at.</p><ol className="career-process">{PROCESS.map(([number, title, detail]) => <li key={number}><span>{number}</span><div><strong>{title}</strong><p>{detail}</p></div></li>)}</ol><span className="career-card-foot">Select a role to turn this card →</span></div>
-      <div className="career-card-face career-card-back" inert={!selected || undefined}><div className="career-card-top"><span className="eyebrow">Introduction / {selected?.area || 'EKA'}</span><button type="button" onClick={() => { setSelected(null); setReady(false); }} aria-label="Close the application card">×</button></div><h3 ref={cardTitleRef} tabIndex={-1}>{selected?.title || 'Your introduction'}</h3>{!ready ? <form onSubmit={submit} noValidate className="career-form"><p>Tell us enough to start a useful conversation. Your email app will open so you can review the message and attach your CV.</p><div className="form-pair"><label>Full name <input name="name" autoComplete="name" value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} required /></label><label>Email <input name="email" type="email" autoComplete="email" value={form.email} onChange={(event) => setForm({ ...form, email: event.target.value })} required /></label></div><label>Portfolio or profile <span>Optional</span><input name="link" type="url" placeholder="https://" value={form.link} onChange={(event) => setForm({ ...form, link: event.target.value })} /></label><label>A few words about your work <textarea name="note" rows="3" value={form.note} onChange={(event) => setForm({ ...form, note: event.target.value })} required /></label>{error && <p className="form-error" role="alert">{error}</p>}<button className="button button-primary" type="submit">Prepare introduction <span aria-hidden="true">↗</span></button></form> : <div className="career-ready" role="status"><p>Your introduction is ready. Open it in your email app, attach any CV or work sample you want to share, then send it yourself.</p><a className="button button-primary" href={prepareApplication(selected, form)}>Open email app <span aria-hidden="true">↗</span></a><button type="button" className="text-link" onClick={() => setReady(false)}>Edit your note <span aria-hidden="true">↶</span></button></div>}</div></div></div></div>
-    </div></section>
-    <section className="careers-close section-pad ink-section"><div className="site-wrap next-grid"><p className="eyebrow">A good introduction</p><h2 className="display-title">Show us something <em>you care about.</em></h2><p>A project, a decision, a difficult problem or a lesson learned. The context behind the work tells us more than a list of tools.</p></div></section>
-  </div>;
+      <section className="section tone-sunken" id="openings" aria-labelledby="roles-title">
+        <div className="wrap">
+          <div className="split-head">
+            <div>
+              <Eyebrow>Roles</Eyebrow>
+              <h2 id="roles-title" className="h-section">Find the work that <em>sounds like you.</em></h2>
+            </div>
+            <p className="body">Choose a role and the card on the right turns into a short introduction you send from your own email.</p>
+          </div>
+          <p className="draft-note">Draft listings for review. Availability and details are not yet confirmed.</p>
+
+          <div className="careers-layout">
+            <div className="roles-column">
+              <div className="roles-list">
+                {ROLES.map((role) => (
+                  <button type="button" key={role.title} className={`role-row ${selected?.title === role.title ? 'selected' : ''}`} onClick={() => choose(role)} aria-controls="careers-card" aria-expanded={selected?.title === role.title}>
+                    <span className="role-row-main"><strong>{role.title}</strong><small>{role.area} · {role.level}</small></span>
+                    <span className="role-row-arrow" aria-hidden="true"><Arrow dir="right" /></span>
+                  </button>
+                ))}
+              </div>
+              <p className="roles-aside">Different background?<button type="button" onClick={() => choose(OPEN_INTRO)}>Introduce yourself anyway</button></p>
+            </div>
+
+            <div className="career-card-wrap" id="careers-card">
+              <div className={`career-card ${selected ? 'is-flipped' : ''} ${ready ? 'is-ready' : ''}`}>
+                <div className="career-card-face career-card-front" inert={Boolean(selected) || undefined}>
+                  <div className="career-card-top"><Eyebrow>How hiring works</Eyebrow></div>
+                  <h3>First, let’s talk about the work.</h3>
+                  <p className="career-card-intro">We care about how you think, what you make and what you want to get better at.</p>
+                  <ol className="career-process">
+                    {PROCESS.map(([title, detail], index) => <li key={title}><span>{index + 1}</span><div><strong>{title}</strong><p>{detail}</p></div></li>)}
+                  </ol>
+                  <span className="career-card-foot">Choose a role to begin <Arrow dir="right" /></span>
+                </div>
+
+                <div className="career-card-face career-card-back" inert={!selected || undefined}>
+                  <div className="career-card-top">
+                    <Eyebrow>{selected?.area || 'Introduction'}</Eyebrow>
+                    <button type="button" className="career-card-close" onClick={() => { setSelected(null); setReady(false); }} aria-label="Close the introduction card">×</button>
+                  </div>
+                  <h3 ref={cardTitleRef} tabIndex={-1}>{selected?.title || 'Your introduction'}</h3>
+                  {!ready ? (
+                    <form onSubmit={submit} noValidate className="career-form">
+                      <p>Enough to start a useful conversation. Your email app opens next so you can review the message and attach a CV.</p>
+                      <div className="form-pair">
+                        <label className="field">Full name<input name="name" autoComplete="name" value={form.name} onChange={update('name')} required /></label>
+                        <label className="field">Email<input name="email" type="email" autoComplete="email" value={form.email} onChange={update('email')} required /></label>
+                      </div>
+                      <label className="field"><span className="field-label">Portfolio or profile<span className="field-hint">Optional</span></span><input name="link" type="url" placeholder="https://" value={form.link} onChange={update('link')} /></label>
+                      <label className="field">A few words about your work<textarea name="note" rows="3" value={form.note} onChange={update('note')} required /></label>
+                      {error && <p className="form-error" role="alert">{error}</p>}
+                      <Button type="submit" className="btn-block" dir="right">Prepare introduction</Button>
+                    </form>
+                  ) : (
+                    <div className="career-ready" role="status">
+                      <p>Your introduction is ready. Open it in your email app, attach any CV or work sample, then send it yourself.</p>
+                      <Button href={prepareApplication(selected, form)}>Open email app</Button>
+                      <button type="button" className="text-link" onClick={() => setReady(false)}><Arrow dir="back" /><span>Edit your note</span></button>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <ClosingCta eyebrow="A good introduction" title={<>Show us something <em>you care about.</em></>} action="Choose a role" to="#openings">
+        A project, a decision, a difficult problem or a lesson learned. The context behind the work tells us more than a list of tools.
+      </ClosingCta>
+    </div>
+  );
 }
