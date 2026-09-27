@@ -9,6 +9,7 @@ export const SERVICES = [
     prompt: 'When the experience itself is the business.',
     description: 'We shape interfaces around the decisions people need to make, then build them for the pace of real use: on a phone between meetings, or on an office laptop all day.',
     examples: ['Company websites', 'Customer portals', 'Web applications', 'SaaS products'],
+    figure: 'A customer portal showing where a request stands.',
   },
   {
     id: 'service-02',
@@ -18,6 +19,7 @@ export const SERVICES = [
     prompt: 'When the work behind the scenes needs a better shape.',
     description: 'We translate messy operations into clear workflows, with room for the exceptions that always appear, and connect them to the tools you already rely on.',
     examples: ['Internal tools', 'Approval workflows', 'Dashboards', 'System integration'],
+    figure: 'An approvals board for day-to-day operations.',
   },
   {
     id: 'service-03',
@@ -27,6 +29,7 @@ export const SERVICES = [
     prompt: 'When automation can remove repetition without hiding judgement.',
     description: 'We design the line between the system and the person: what can be automated, what should be reviewed, and how anyone can see what happened afterwards.',
     examples: ['Assisted replies', 'Document handling', 'Review queues', 'Knowledge search'],
+    figure: 'A suggested reply that a person approves before it is sent.',
   },
   {
     id: 'service-04',
@@ -34,7 +37,8 @@ export const SERVICES = [
     name: 'reliable platforms',
     short: 'The hosting, monitoring and structure that keep a system fast as it grows and safe to change.',
     prompt: 'When the foundation needs to carry the next chapter.',
-    description: 'We treat performance, accessibility and operations as part of the product, not tasks left until the end, so the system keeps working as it grows.',
+    description: 'We plan performance, accessibility and operations from the first week, so the system keeps working as it grows.',
     examples: ['Architecture', 'Performance', 'Cloud & hosting', 'Monitoring'],
+    figure: 'A service health view after a release.',
   },
 ];

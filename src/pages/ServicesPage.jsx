@@ -1,5 +1,5 @@
 import React from 'react';
-import { ClosingCta, Eyebrow, TextLink } from '../components/ui';
+import { Arrow, ClosingCta, Eyebrow, TextLink } from '../components/ui';
 import { VIGNETTES } from '../components/vignetteList';
 import { SERVICES } from '../lib/services';
 
@@ -17,9 +17,9 @@ export default function ServicesPage() {
               <p className="lede">A product, a business process and the platform underneath it are often the same problem seen from different angles.</p>
             </div>
           </div>
-          <nav aria-label="Services on this page">
-            <ul className="anchor-pills">
-              {SERVICES.map((service, index) => <li key={service.id}><a href={`#${service.id}`}><span>{index + 1}</span>{service.title}</a></li>)}
+          <nav className="page-index" aria-label="Services on this page">
+            <ul>
+              {SERVICES.map((service) => <li key={service.id}><a href={`#${service.id}`}>{service.title}<Arrow dir="down" /></a></li>)}
             </ul>
           </nav>
         </div>
@@ -29,26 +29,32 @@ export default function ServicesPage() {
         {SERVICES.map((service, index) => {
           const Vignette = VIGNETTES[index];
           return (
-            <section id={service.id} className="chapter section" key={service.id} aria-labelledby={`${service.id}-title`}>
+            <section id={service.id} className={`chapter section ${index % 2 ? 'tone-sunken' : ''}`.trim()} key={service.id} aria-labelledby={`${service.id}-title`}>
               <div className="wrap chapter-grid">
                 <div className="chapter-copy">
-                  <Eyebrow>{service.prompt}</Eyebrow>
+                  <p className="chapter-prompt">{service.prompt}</p>
                   <h2 id={`${service.id}-title`} className="h-section">{service.title}</h2>
                   <p className="lede">{service.description}</p>
-                  <ul className="tag-list" aria-label={`Typical ${service.name} work`}>
-                    {service.examples.map((example) => <li key={example}>{example}</li>)}
-                  </ul>
+                  <div className="examples">
+                    <h3>Typical work</h3>
+                    <ul aria-label={`Typical ${service.name} work`}>
+                      {service.examples.map((example) => <li key={example}>{example}</li>)}
+                    </ul>
+                  </div>
                   <TextLink to="/contact">Discuss a project like this</TextLink>
                 </div>
-                <div className="chapter-visual"><Vignette /></div>
+                <figure className="chapter-figure">
+                  <div className="chapter-visual"><Vignette /></div>
+                  <figcaption><span>Illustrative</span> {service.figure}</figcaption>
+                </figure>
               </div>
             </section>
           );
         })}
       </div>
 
-      <ClosingCta eyebrow="Not sure which one?" title={<>Start with the situation, <em>not a package.</em></>} action="Discuss a project">
-        Tell us where the friction is. We will work out together which of these belong in the answer.
+      <ClosingCta eyebrow="Not sure which one?" title={<>Most projects need <em>two or three</em> of these.</>} action="Discuss a project">
+        Tell us where the friction is. We will work out together which parts belong in the answer.
       </ClosingCta>
     </div>
   );
