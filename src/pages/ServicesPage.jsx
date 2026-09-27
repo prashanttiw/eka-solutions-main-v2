@@ -1,32 +1,18 @@
 import React from 'react';
-import PageHeader from '../components/PageHeader';
-import PageNav from '../components/PageNav';
-import ServicesGrid from '../components/ServicesGrid';
-import Products from '../components/Products';
-import Industries from '../components/Industries';
+import { Link } from 'react-router-dom';
+
+const CAPABILITIES = [
+  { number: '01', title: 'Digital products', prompt: 'When the experience itself is the business.', description: 'We shape interfaces and applications around the decisions people need to make, then build them for the pace of real use.', examples: ['Customer portals', 'SaaS experiences', 'Web applications'] },
+  { number: '02', title: 'Business systems', prompt: 'When the work behind the scenes needs a better shape.', description: 'We translate messy operations into clear workflows, with enough flexibility for the exceptions that always appear.', examples: ['Internal tools', 'Operational workflows', 'System integration'] },
+  { number: '03', title: 'AI workflows', prompt: 'When automation can remove repetition without hiding judgement.', description: 'We design the boundary between the system and the person: what can be automated, what should be reviewed and how to see what happened.', examples: ['Assisted workflows', 'Evaluation and review', 'Knowledge interfaces'] },
+  { number: '04', title: 'Reliable platforms', prompt: 'When the foundation needs to carry the next chapter.', description: 'We consider performance, accessibility and operations as part of the product—not tasks left until the end.', examples: ['Architecture', 'Performance', 'Delivery systems'] },
+];
+
 export default function ServicesPage() {
-  return (
-    <>
-      <PageHeader
-        eyebrow="Services"
-        title={
-          <>
-            Built around
-            <br />
-            <span className="text-[var(--blue)]">your business.</span>
-          </>
-        }
-        lead="Websites, applications, design, and automation. Start with what your business needs to achieve; we can shape the right solution together."
-        sections={[
-          { id: 'services', label: 'Our services' },
-          { id: 'products', label: 'Connected solutions' },
-          { id: 'industries', label: 'Business contexts' },
-        ]}
-      />
-      <ServicesGrid />
-      <Products />
-      <Industries />
-      <PageNav />
-    </>
-  );
+  return <div className="services-page">
+    <header className="services-hero paper-surface section-pad"><div className="site-wrap"><p className="eyebrow"><span className="eyebrow-mark" /> Services / What we can shape together</p><div className="services-hero-grid"><h1 className="display-title">Build what the work <em>actually needs.</em></h1><div><p className="section-lede">A product, a business process and the platform underneath it are often the same problem viewed from different angles.</p><a href="#capability-index" className="text-link">Explore the capabilities <span aria-hidden="true">↓</span></a></div></div></div></header>
+    <section id="capability-index" className="service-index"><div className="site-wrap"><p className="eyebrow">Four ways in / one joined up effort</p><nav aria-label="Capabilities">{CAPABILITIES.map((item) => <a key={item.number} href={`#service-${item.number}`}><span>{item.number}</span>{item.title}<span aria-hidden="true">↓</span></a>)}</nav></div></section>
+    <div className="service-chapters">{CAPABILITIES.map((item, index) => <section id={`service-${item.number}`} className={`service-chapter section-pad ${index % 2 === 0 ? 'paper-surface' : ''}`} key={item.number}><div className="site-wrap service-chapter-grid"><div className="service-chapter-index"><span className="index-number">{item.number} / 04</span><span className="service-figure" aria-hidden="true"><i /><i /><i /></span></div><div><p className="eyebrow">{item.prompt}</p><h2 className="display-title">{item.title}</h2><p className="section-lede">{item.description}</p><ul className="service-tags" aria-label={`${item.title} examples`}>{item.examples.map((example) => <li key={example}>{example}</li>)}</ul></div></div></section>)}</div>
+    <section className="section-pad service-close ink-section"><div className="site-wrap next-grid"><p className="eyebrow">What happens next</p><h2 className="display-title">Start with the situation, <em>not a package.</em></h2><div><p>Tell us where the friction is. We can work out which capabilities belong in the answer together.</p><Link className="button button-light" to="/contact">Discuss a project <span aria-hidden="true">↗</span></Link></div></div></section>
+  </div>;
 }
