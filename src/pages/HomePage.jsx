@@ -175,16 +175,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section section-flush-top" aria-labelledby="belief-title">
-        <div className="wrap">
-          <div className="belief">
-            <div className="intro-block">
-              <Eyebrow>What we leave behind</Eyebrow>
-              <h2 id="belief-title" className="h-section">Good software leaves <em>clarity</em> behind.</h2>
-            </div>
-            <ul className="leave-list">
-              {LEAVES.map(([title, text]) => <li key={title}><strong>{title}</strong><p>{text}</p></li>)}
-            </ul>
+      <section className="section" aria-labelledby="belief-title">
+        <div className="wrap statement">
+          <Eyebrow>What we leave behind</Eyebrow>
+          <h2 id="belief-title" className="statement-line">Good software leaves <span>clarity</span> behind.</h2>
+          <div className="statement-body">
+            <p className="statement-text">
+              {LEAVES.map(([title, text]) => <React.Fragment key={title}><strong>{title}.</strong> {text} </React.Fragment>)}
+            </p>
             <TextLink to="/about">More about how we think</TextLink>
           </div>
         </div>

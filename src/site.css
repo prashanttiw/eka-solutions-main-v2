@@ -261,10 +261,15 @@ main[id], section[id] { scroll-margin-top: 104px; }
 .path-keep { margin-top: var(--s1); padding-top: var(--s2); border-top: 1px solid var(--line); color: var(--ink-2); font-size: 15px; line-height: 1.5; }
 .path-keep span { display: block; margin-bottom: 2px; color: var(--blue); font-size: 13px; font-weight: 600; }
 
-.belief { display: grid; gap: 48px; padding: clamp(36px, 5vw, 72px); background: var(--paper-sunken); border-radius: 28px; }
-.leave-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; margin: 0; padding: 32px 0 0; border-top: 1px solid var(--line-strong); list-style: none; }
-.leave-list strong { display: block; font-size: 19px; font-weight: 600; letter-spacing: -.012em; }
-.leave-list p { margin-top: 8px; color: var(--ink-2); font-size: 16px; line-height: 1.6; }
+/* What we leave behind: one sentence set large in the serif, its second line indented, and the
+   three qualities as a single two-tone paragraph offset to the right. No box. */
+.statement { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--s3); }
+.statement > * { grid-column: 1 / -1; }
+.statement-line { max-width: 19ch; padding-left: 1.2em; text-indent: -1.2em; color: var(--ink); font: italic 400 clamp(46px, 7.2vw, 112px)/.98 var(--serif); letter-spacing: -.015em; }
+.statement-line span { color: var(--blue); }
+.statement-body { grid-column: 6 / -1; display: grid; gap: var(--s4); justify-items: start; margin-top: clamp(40px, 5vw, 72px); }
+.statement-text { max-width: 46ch; color: var(--ink-2); font-size: clamp(19px, 1.6vw, 22px); line-height: 1.5; letter-spacing: -.01em; text-wrap: pretty; }
+.statement-text strong { color: var(--ink); font-weight: 600; }
 
 /* ---------- Vignettes ---------- */
 .vg { position: relative; overflow: hidden; border: 1px solid var(--line); border-radius: 14px; background: #fff; box-shadow: 0 1px 0 rgba(18, 38, 74, .04), 0 18px 36px -24px rgba(11, 26, 51, .4); font-family: var(--sans); color: var(--ink); user-select: none; }
@@ -695,7 +700,9 @@ main[id], section[id] { scroll-margin-top: 104px; }
   .page-hero-grid, .split-head, .two-col, .chapter-grid, .stage-grid, .closing-card, .footer-top { grid-template-columns: 1fr; }
   .split-head { align-items: start; }
   .chapter:nth-child(even) .chapter-copy { order: 0; }
-  .voices-layout, .note-cards, .decision-cards, .after-hello, .leave-list, .founding-band, .founding-why { grid-template-columns: 1fr; }
+  .voices-layout, .note-cards, .decision-cards, .after-hello, .founding-band, .founding-why { grid-template-columns: 1fr; }
+  .statement-body { grid-column: 1 / -1; }
+  .statement-line { padding-left: .9em; text-indent: -.9em; }
   .places-dark { padding: var(--s3) 0 0; border-left: 0; border-top: 1px solid var(--line-light); }
   .places-grid { grid-template-columns: repeat(5, 10px); gap: 7px; }
   .places-grid i { width: 10px; height: 10px; }
@@ -730,7 +737,6 @@ main[id], section[id] { scroll-margin-top: 104px; }
   .actions { flex-direction: column; align-items: stretch; }
   .actions .btn { justify-content: space-between; }
   .form-pair { grid-template-columns: 1fr; }
-  .belief { padding: 28px 22px; border-radius: 22px; }
   .closing-card { padding: 32px 22px; border-radius: 24px; }
   .closing-actions .btn { width: 100%; justify-content: space-between; }
   .site-footer { padding-bottom: 88px; border-radius: 24px 24px 0 0; }
