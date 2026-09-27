@@ -120,17 +120,16 @@ export default function HomePage() {
             <h2 id="build-title" className="h-section">Four ways in. Often one project.</h2>
             <p className="body">Problems rarely arrive in neat categories. A customer portal usually needs a better process behind it, and both need a platform that holds up.</p>
           </div>
-          {/* One frame, four cells that share their edges: the layout says "one project". */}
-          <div className="service-frame">
+          <div className="service-cards">
             {SERVICES.map((service, index) => {
               const Vignette = VIGNETTES[index];
               return (
-                <Link className="service-cell" key={service.id} to={`/services#${service.id}`}>
-                  <div className="service-art"><Vignette /></div>
-                  <div className="service-copy">
+                <Link className="service-card" key={service.id} to={`/services#${service.id}`}>
+                  <div className="vg-stage"><Vignette /></div>
+                  <div className="service-card-copy">
                     <h3 className="h-card">{service.title}</h3>
                     <p>{service.short}</p>
-                    <span className="service-more">Explore {service.name}<Arrow dir="right" /></span>
+                    <span className="service-card-more">Explore {service.name}<span className="arrow-nudge" aria-hidden="true">→</span></span>
                   </div>
                 </Link>
               );
