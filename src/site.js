@@ -1,10 +1,3 @@
-import Briefcase from 'lucide-react/dist/esm/icons/briefcase';
-import Compass from 'lucide-react/dist/esm/icons/compass';
-import Home from 'lucide-react/dist/esm/icons/home';
-import Info from 'lucide-react/dist/esm/icons/info';
-import Layers from 'lucide-react/dist/esm/icons/layers';
-import UserPlus from 'lucide-react/dist/esm/icons/user-plus';
-
 // Canonical/OG URLs need one absolute origin. This assumes the eventual production
 // domain (it already matches the contact email and WhatsApp-facing identity); update it
 // here once a custom domain is actually pointed at the deployment.
@@ -15,9 +8,8 @@ export const PAGES = [
     path: '/',
     id: 'home',
     label: 'Home',
-    icon: Home,
     eyebrow: 'Welcome',
-    title: 'EKA Solution — Built for you. Built to last.',
+    title: 'EKA Solution — Make the complex clear.',
     line: 'Design and engineering around your business.',
     description:
       'EKA Solution brings design and engineering together for websites, applications, and smarter business workflows.',
@@ -26,7 +18,6 @@ export const PAGES = [
     path: '/about',
     id: 'about',
     label: 'About',
-    icon: Info,
     eyebrow: 'Who we are',
     line: 'The purpose and principles behind EKA.',
     description:
@@ -36,7 +27,6 @@ export const PAGES = [
     path: '/services',
     id: 'services',
     label: 'Services',
-    icon: Layers,
     eyebrow: 'What we do',
     line: 'Websites, applications, design, and automation.',
     description:
@@ -46,7 +36,6 @@ export const PAGES = [
     path: '/work',
     id: 'work',
     label: 'Work',
-    icon: Briefcase,
     eyebrow: 'A closer look',
     line: 'The thinking behind our own digital home.',
     description:
@@ -56,7 +45,6 @@ export const PAGES = [
     path: '/playbook',
     id: 'playbook',
     label: 'Playbook',
-    icon: Compass,
     eyebrow: 'How we work',
     line: 'A clear path from the first conversation to launch.',
     description:
@@ -66,7 +54,6 @@ export const PAGES = [
     path: '/careers',
     id: 'careers',
     label: 'Careers',
-    icon: UserPlus,
     eyebrow: 'Connect with us',
     line: 'Share your work and explore opportunities.',
     description:
