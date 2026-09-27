@@ -1,5 +1,7 @@
 import React from 'react';
-import { Button, Eyebrow } from '../components/ui';
+import { Link } from 'react-router-dom';
+import { Arrow, Button, Eyebrow } from '../components/ui';
+import { PAGES } from '../site';
 
 export default function NotFoundPage() {
   return (
@@ -12,6 +14,13 @@ export default function NotFoundPage() {
           <Button to="/" dir="back">Back to home</Button>
           <Button to="/contact" variant="ghost">Contact EKA</Button>
         </div>
+        <nav className="page-index notfound-index" aria-label="Main pages">
+          <ul>
+            {PAGES.filter(({ path }) => path !== '/').map(({ path, label }) => (
+              <li key={path}><Link to={path}>{label}<Arrow dir="right" /></Link></li>
+            ))}
+          </ul>
+        </nav>
       </div>
     </div>
   );
