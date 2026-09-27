@@ -1,17 +1,83 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { ClosingCta, Eyebrow, TextLink } from '../components/ui';
 
 const OBSERVATIONS = [
-  ['A request is a clue', '“We need a dashboard” might mean someone cannot see the state of a decision. We look for that gap first.'],
-  ['The edges reveal the system', 'Exception paths, permissions and handoffs tell us as much as the happy path.'],
+  ['A request is a clue', '“We need a dashboard” might really mean someone cannot see the state of a decision. We look for that gap before we draw a single screen.'],
+  ['The edges reveal the system', 'Exceptions, permissions and handoffs tell us as much as the everyday path. They are usually where people lose time.'],
   ['Useful beats impressive', 'The best solution makes the next action easier to understand, even when nobody is watching a demo.'],
 ];
 
+const QUALITIES = [
+  ['Understandable', 'The people using it can tell what it is doing, and why.'],
+  ['Maintainable', 'Your own team can change it without starting over.'],
+  ['Resilient', 'It keeps working when the business, the load or the rules change.'],
+];
+
 export default function AboutPage() {
-  return <div className="about-page">
-    <header className="about-hero paper-surface section-pad"><div className="site-wrap"><p className="eyebrow"><span className="eyebrow-mark" /> About / The thinking behind EKA</p><div className="about-hero-grid"><h1 className="display-title">We like the hard part <em>before</em> the build.</h1><div className="about-hero-side"><span className="editorial-rule" aria-hidden="true" /><p>Understanding what is actually happening in a business takes patience. That work shapes everything that follows.</p><Link className="text-link" to="/playbook">How we work <span aria-hidden="true">↗</span></Link></div></div><div className="about-running-line"><span>Curiosity</span><span>Judgement</span><span>Care</span></div></div></header>
-    <section className="section-pad about-intro"><div className="site-wrap two-column-story"><p className="eyebrow">01 / Why this matters</p><div><h2 className="display-title">A system is only as clear as the thinking inside it.</h2><p className="section-lede">People feel the seams when design, engineering and business decisions are made apart. Our work starts by putting those conversations next to each other.</p><p>We ask what the person using the software is trying to accomplish, what the business needs to learn, and which constraints are real. Then we make those answers visible enough to challenge.</p></div></div></section>
-    <section className="section-pad about-observations paper-surface"><div className="site-wrap"><div className="section-heading section-heading-split"><p className="eyebrow">02 / Things we pay attention to</p><h2 className="display-title">The details are the work.</h2><p>These questions are small enough to miss and important enough to change the outcome.</p></div><div className="observation-list">{OBSERVATIONS.map(([title, body], index) => <article key={title}><span className="index-number">0{index + 1}</span><h3>{title}</h3><p>{body}</p></article>)}</div></div></section>
-    <section className="section-pad about-promise ink-section"><div className="site-wrap about-promise-grid"><p className="eyebrow">03 / What we aim to leave</p><h2 className="display-title">Something that makes sense <em>tomorrow.</em></h2><div><p>A useful product should be understandable to its users, maintainable by its owners and resilient when the next change arrives.</p><Link className="button button-light" to="/services">See what we do <span aria-hidden="true">↗</span></Link></div></div></section>
-  </div>;
+  return (
+    <div className="about-page">
+      <header className="page-hero">
+        <div className="wrap page-hero-grid">
+          <div>
+            <Eyebrow>About EKA</Eyebrow>
+            <h1 className="h-display">We like the hard part <em>before</em> the build.</h1>
+          </div>
+          <div className="page-hero-aside">
+            <p className="lede">Understanding what is really happening in a business takes patience. That work shapes everything that follows.</p>
+            <TextLink to="/playbook">See how we work</TextLink>
+          </div>
+        </div>
+      </header>
+
+      <section className="section tone-raised" aria-labelledby="why-title">
+        <div className="wrap two-col">
+          <div>
+            <Eyebrow>Why this matters</Eyebrow>
+            <h2 id="why-title" className="h-section">A system is only as clear as the thinking inside it.</h2>
+          </div>
+          <div>
+            <p className="lede">People feel the seams when design, engineering and business decisions are made apart. We start by putting those conversations next to each other.</p>
+            <p className="body">We ask what the person using the software is trying to accomplish, what the business needs to learn, and which constraints are real. Then we make those answers visible enough for everyone to challenge.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="section" aria-labelledby="details-title">
+        <div className="wrap">
+          <div className="split-head">
+            <div>
+              <Eyebrow>What we pay attention to</Eyebrow>
+              <h2 id="details-title" className="h-section">The details are the work.</h2>
+            </div>
+            <p className="body">Small enough to miss, important enough to change the outcome.</p>
+          </div>
+          <div className="note-cards">
+            {OBSERVATIONS.map(([title, body], index) => (
+              <article className="note-card card" key={title}>
+                <span className="note-card-index">{index + 1}</span>
+                <h3 className="h-card">{title}</h3>
+                <p>{body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section tone-sunken" aria-labelledby="leave-title">
+        <div className="wrap">
+          <div className="intro-block">
+            <Eyebrow>What we aim to leave</Eyebrow>
+            <h2 id="leave-title" className="h-section">Something that still makes sense <em>tomorrow.</em></h2>
+          </div>
+          <ul className="qualities">
+            {QUALITIES.map(([title, text]) => <li key={title}><strong>{title}</strong><p>{text}</p></li>)}
+          </ul>
+        </div>
+      </section>
+
+      <ClosingCta eyebrow="Keep reading" title={<>See what we <em>build.</em></>} action="Explore services" to="/services">
+        Four kinds of work, often combined in one project: products, business systems, AI workflows and the platforms beneath them.
+      </ClosingCta>
+    </div>
+  );
 }

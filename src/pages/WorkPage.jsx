@@ -1,17 +1,72 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { ClosingCta, Eyebrow, TextLink } from '../components/ui';
 
 const DECISIONS = [
-  ['01 / Presentation', 'A story instead of a directory', 'The page moves from a real point of friction to an approach, then to the kind of work EKA can help with.'],
-  ['02 / Performance', 'A fast page is part of the design', 'The visual language uses type, layout and static artwork. It does not need a renderer running while someone reads.'],
-  ['03 / Honesty', 'Evidence before claims', 'Named client results belong here only when the team can stand behind them. Until then, this in house project is the example we can show.'],
+  ['Presentation', 'A story instead of a directory', 'Each page moves from a real point of friction, to an approach, to the kind of work we can help with, and ends with one clear next step.'],
+  ['Performance', 'A fast page is part of the design', 'Type, layout and hand-built illustrations carry the look. Nothing runs in the background while someone reads, so ordinary phones and laptops stay responsive.'],
+  ['Honesty', 'Evidence before claims', 'Client names and results appear here only once they are approved for publication. Until then, this in-house project is the work we can show openly.'],
 ];
 
 export default function WorkPage() {
-  return <div className="work-page">
-    <header className="work-hero ink-section section-pad"><div className="site-wrap work-hero-grid"><div><p className="eyebrow"><span className="eyebrow-mark" /> Work / Selected notes</p><h1 className="display-title">The work should <em>speak plainly.</em></h1></div><p>We are building this section around work we can describe accurately. Here is one project we can show from the inside: this site itself.</p></div><div className="site-wrap work-hero-footer"><span>In house project</span><span>01 / EKA Solution website</span><span>2026</span></div></header>
-    <section className="section-pad work-feature paper-surface"><div className="site-wrap work-feature-grid"><div className="work-feature-visual"><div className="work-visual-top"><span>EKA / WORKING FILE</span><span>01—04</span></div><div className="work-visual-text">Make the<br /><em>complex clear.</em></div><div className="work-visual-bottom"><span>From a rough idea</span><span>To a useful system ↗</span></div></div><div className="work-feature-copy"><p className="eyebrow">Featured / Our own digital home</p><h2 className="display-title">A website that practices what it says.</h2><p className="section-lede">The brief was simple to say and hard to get right: make EKA clear to a new visitor while keeping the experience responsive on ordinary devices.</p><p>The result is an ongoing design exercise. We use this space to show the decisions behind it, including the tradeoffs we made for performance and accessibility.</p><Link className="text-link" to="/playbook">See the working approach <span aria-hidden="true">↗</span></Link></div></div></section>
-    <section className="section-pad work-decisions"><div className="site-wrap"><div className="section-heading section-heading-split"><p className="eyebrow">Notes from the process</p><h2 className="display-title">Three decisions behind the page.</h2><p>The details below are about this site. They do not claim results for unnamed clients.</p></div><div className="work-decision-list">{DECISIONS.map(([tag, title, body]) => <article key={tag}><span className="eyebrow">{tag}</span><h3>{title}</h3><p>{body}</p></article>)}</div></div></section>
-    <section className="section-pad work-next ink-section"><div className="site-wrap next-grid"><p className="eyebrow">Your project</p><h2 className="display-title">A different context.<br /><em>Same care.</em></h2><div><p>Tell us what needs to change. We will start by understanding it.</p><Link className="button button-light" to="/contact">Start a conversation <span aria-hidden="true">↗</span></Link></div></div></section>
-  </div>;
+  return (
+    <div className="work-page">
+      <header className="page-hero">
+        <div className="wrap page-hero-grid">
+          <div>
+            <Eyebrow>Work</Eyebrow>
+            <h1 className="h-display">The work should <em>speak plainly.</em></h1>
+          </div>
+          <div className="page-hero-aside">
+            <p className="lede">We only show work we can describe accurately. The first project we can open up fully is this website itself.</p>
+          </div>
+        </div>
+      </header>
+
+      <section className="section tone-sunken" aria-labelledby="case-title">
+        <div className="wrap case-feature">
+          <figure className="browser">
+            <div className="vg-bar"><i /><i /><i /><span>ekasolution.com</span></div>
+            <img src="/assets/work-eka-home.webp" alt="The EKA Solution homepage: the headline “Make the complex clear.” beside a diagram of three paths joining into one" width="1440" height="900" loading="lazy" decoding="async" />
+          </figure>
+          <div className="case-copy">
+            <Eyebrow>In-house project</Eyebrow>
+            <h2 id="case-title" className="h-section">A website that practises what it says.</h2>
+            <dl className="case-meta">
+              <div><dt>Scope</dt><dd>Strategy, design, build</dd></div>
+              <div><dt>Focus</dt><dd>Clarity, speed</dd></div>
+              <div><dt>Year</dt><dd>2026</dd></div>
+            </dl>
+            <p className="body">The brief was simple to say and hard to get right: explain EKA clearly to a first-time visitor, and keep the site quick on the Windows laptops and Android phones most people actually use.</p>
+            <p className="body">An earlier version leaned on 3D graphics and particle effects. It looked striking on a new MacBook and struggled everywhere else, so we rebuilt it around writing, typography and lightweight illustration.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="section" aria-labelledby="decisions-title">
+        <div className="wrap">
+          <div className="split-head">
+            <div>
+              <Eyebrow>Notes from the process</Eyebrow>
+              <h2 id="decisions-title" className="h-section">Three decisions behind the page.</h2>
+            </div>
+            <TextLink to="/playbook">See the process we followed</TextLink>
+          </div>
+          <div className="decision-cards">
+            {DECISIONS.map(([tag, title, body]) => (
+              <article className="decision-card card" key={tag}>
+                <small>{tag}</small>
+                <h3 className="h-card">{title}</h3>
+                <p>{body}</p>
+              </article>
+            ))}
+          </div>
+          <p className="honesty-note">These notes describe this website only. They make no claims about results for unnamed clients.</p>
+        </div>
+      </section>
+
+      <ClosingCta eyebrow="Your project" title={<>A different context. <em>Same care.</em></>}>
+        Tell us what needs to change. We will start by understanding it.
+      </ClosingCta>
+    </div>
+  );
 }

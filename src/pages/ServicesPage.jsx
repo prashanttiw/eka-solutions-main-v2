@@ -1,18 +1,55 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-
-const CAPABILITIES = [
-  { number: '01', title: 'Digital products', prompt: 'When the experience itself is the business.', description: 'We shape interfaces and applications around the decisions people need to make, then build them for the pace of real use.', examples: ['Customer portals', 'SaaS experiences', 'Web applications'] },
-  { number: '02', title: 'Business systems', prompt: 'When the work behind the scenes needs a better shape.', description: 'We translate messy operations into clear workflows, with enough flexibility for the exceptions that always appear.', examples: ['Internal tools', 'Operational workflows', 'System integration'] },
-  { number: '03', title: 'AI workflows', prompt: 'When automation can remove repetition without hiding judgement.', description: 'We design the boundary between the system and the person: what can be automated, what should be reviewed and how to see what happened.', examples: ['Assisted workflows', 'Evaluation and review', 'Knowledge interfaces'] },
-  { number: '04', title: 'Reliable platforms', prompt: 'When the foundation needs to carry the next chapter.', description: 'We consider performance, accessibility and operations as part of the product—not tasks left until the end.', examples: ['Architecture', 'Performance', 'Delivery systems'] },
-];
+import { ClosingCta, Eyebrow, TextLink } from '../components/ui';
+import { VIGNETTES } from '../components/vignetteList';
+import { SERVICES } from '../lib/services';
 
 export default function ServicesPage() {
-  return <div className="services-page">
-    <header className="services-hero paper-surface section-pad"><div className="site-wrap"><p className="eyebrow"><span className="eyebrow-mark" /> Services / What we can shape together</p><div className="services-hero-grid"><h1 className="display-title">Build what the work <em>actually needs.</em></h1><div><p className="section-lede">A product, a business process and the platform underneath it are often the same problem viewed from different angles.</p><a href="#capability-index" className="text-link">Explore the capabilities <span aria-hidden="true">↓</span></a></div></div></div></header>
-    <section id="capability-index" className="service-index"><div className="site-wrap"><p className="eyebrow">Four ways in / one joined up effort</p><nav aria-label="Capabilities">{CAPABILITIES.map((item) => <a key={item.number} href={`#service-${item.number}`}><span>{item.number}</span>{item.title}<span aria-hidden="true">↓</span></a>)}</nav></div></section>
-    <div className="service-chapters">{CAPABILITIES.map((item, index) => <section id={`service-${item.number}`} className={`service-chapter section-pad ${index % 2 === 0 ? 'paper-surface' : ''}`} key={item.number}><div className="site-wrap service-chapter-grid"><div className="service-chapter-index"><span className="index-number">{item.number} / 04</span><span className="service-figure" aria-hidden="true"><i /><i /><i /></span></div><div><p className="eyebrow">{item.prompt}</p><h2 className="display-title">{item.title}</h2><p className="section-lede">{item.description}</p><ul className="service-tags" aria-label={`${item.title} examples`}>{item.examples.map((example) => <li key={example}>{example}</li>)}</ul></div></div></section>)}</div>
-    <section className="section-pad service-close ink-section"><div className="site-wrap next-grid"><p className="eyebrow">What happens next</p><h2 className="display-title">Start with the situation, <em>not a package.</em></h2><div><p>Tell us where the friction is. We can work out which capabilities belong in the answer together.</p><Link className="button button-light" to="/contact">Discuss a project <span aria-hidden="true">↗</span></Link></div></div></section>
-  </div>;
+  return (
+    <div className="services-page">
+      <header className="page-hero">
+        <div className="wrap">
+          <div className="page-hero-grid">
+            <div>
+              <Eyebrow>Services</Eyebrow>
+              <h1 className="h-display">Build what the work <em>actually needs.</em></h1>
+            </div>
+            <div className="page-hero-aside">
+              <p className="lede">A product, a business process and the platform underneath it are often the same problem seen from different angles.</p>
+            </div>
+          </div>
+          <nav aria-label="Services on this page">
+            <ul className="anchor-pills">
+              {SERVICES.map((service, index) => <li key={service.id}><a href={`#${service.id}`}><span>{index + 1}</span>{service.title}</a></li>)}
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <div className="chapters">
+        {SERVICES.map((service, index) => {
+          const Vignette = VIGNETTES[index];
+          return (
+            <section id={service.id} className="chapter section" key={service.id} aria-labelledby={`${service.id}-title`}>
+              <div className="wrap chapter-grid">
+                <div className="chapter-copy">
+                  <Eyebrow>{service.prompt}</Eyebrow>
+                  <h2 id={`${service.id}-title`} className="h-section">{service.title}</h2>
+                  <p className="lede">{service.description}</p>
+                  <ul className="tag-list" aria-label={`Typical ${service.name} work`}>
+                    {service.examples.map((example) => <li key={example}>{example}</li>)}
+                  </ul>
+                  <TextLink to="/contact">Discuss a project like this</TextLink>
+                </div>
+                <div className="chapter-visual"><Vignette /></div>
+              </div>
+            </section>
+          );
+        })}
+      </div>
+
+      <ClosingCta eyebrow="Not sure which one?" title={<>Start with the situation, <em>not a package.</em></>} action="Discuss a project">
+        Tell us where the friction is. We will work out together which of these belong in the answer.
+      </ClosingCta>
+    </div>
+  );
 }
