@@ -10,6 +10,7 @@ const PlaybookPage = lazy(() => import('./pages/PlaybookPage'));
 const WorkPage = lazy(() => import('./pages/WorkPage'));
 const CareersPage = lazy(() => import('./pages/CareersPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
+const FoundingPage = lazy(() => import('./pages/FoundingPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 /**
@@ -35,6 +36,7 @@ export default function App() {
           <Route path="work" element={page(<WorkPage />)} />
           <Route path="careers" element={page(<CareersPage />)} />
           <Route path="contact" element={page(<ContactPage />)} />
+          <Route path="founding-25" element={page(<FoundingPage />)} />
           <Route path="*" element={page(<NotFoundPage />)} />
         </Route>
       </Routes>

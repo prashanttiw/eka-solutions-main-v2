@@ -69,7 +69,16 @@ export const CONTACT = {
   description:
     'Discuss a project with EKA Solution. Prepare a project enquiry or get in touch by email or WhatsApp.',
 };
-export const ALL_PAGES = [...PAGES, CONTACT];
+// Founding 25 is reached from the homepage, contact form and footer rather than the main
+// navigation, so it sits outside PAGES but still gets its own title and description.
+export const FOUNDING_PAGE = {
+  path: '/founding-25',
+  id: 'founding',
+  label: 'Founding 25',
+  description:
+    'EKA Solution’s first 25 clients work directly with the founders: a personal reply, a working session, a written first plan and a direct line until launch.',
+};
+export const ALL_PAGES = [...PAGES, CONTACT, FOUNDING_PAGE];
 
 // The primary reading journey is for someone evaluating EKA for a project. Careers serves
 // a different audience, so it remains visible in the navigation but does not interrupt the
