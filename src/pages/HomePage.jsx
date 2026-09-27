@@ -79,7 +79,7 @@ export default function HomePage() {
             <Eyebrow>Design &amp; engineering studio</Eyebrow>
             <h1 id="home-title" className="h-display">Make the complex <em>clear.</em></h1>
             <p className="lede">When a business problem is hard to explain, the software built around it should not make it harder.</p>
-            <p className="body">EKA Solution designs and builds websites, applications and internal systems. Product thinking, design and engineering sit in one conversation, from the first rough idea to the tool your team uses every day.</p>
+            <p className="body">We design and build websites, web apps and the internal tools behind them. You talk to the people doing the work, from the first rough idea to launch.</p>
             <div className="actions">
               <Button to="/contact">Start a project</Button>
               <Button href="#how-we-work" variant="ghost" dir="down">See how we work</Button>
@@ -175,7 +175,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section" aria-labelledby="belief-title">
+      <section className="section section-follow" aria-labelledby="belief-title">
         <div className="wrap statement">
           <Eyebrow>What we leave behind</Eyebrow>
           <h2 id="belief-title" className="statement-line">Good software leaves <span>clarity</span> behind.</h2>
@@ -188,8 +188,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      <ClosingCta title={<>Bring the rough version <em>first.</em></>}>
-        The half-formed idea, the process everyone works around, or the product that never quite feels right. That is enough to begin.
+      <ClosingCta title={<>Tell us what is getting <em>in the way.</em></>}>
+        A few honest sentences are enough to start. We reply with what we heard and a sensible first step.
       </ClosingCta>
     </div>
   );

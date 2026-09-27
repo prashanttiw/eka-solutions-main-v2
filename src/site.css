@@ -172,6 +172,8 @@ main[id], section[id] { scroll-margin-top: 104px; }
 /* ---------- Sections ---------- */
 .section { padding-block: var(--section); }
 .section-flush-top { padding-top: 0; }
+/* A second open section on the same paper needs less air above it: one gap, not two. */
+.section-follow { padding-top: clamp(24px, 4vw, 64px); }
 .tone-sunken { background: var(--paper-sunken); }
 .tone-raised { background: var(--paper-raised); }
 .intro-block { max-width: 880px; }
@@ -323,14 +325,13 @@ main[id], section[id] { scroll-margin-top: 104px; }
 .vg-card.is-active { z-index: 3; height: 62px; display: grid; align-content: center; gap: 6px; padding: 0 10px; line-height: 1.3; overflow: visible; box-shadow: 0 0 0 1.5px var(--blue), 0 8px 16px -10px rgba(42, 82, 207, .6); }
 .vg-card-text { overflow: hidden; text-overflow: ellipsis; }
 .vg-chip { justify-items: start; }
-.vg-card em { width: fit-content; padding: 2px 7px; border-radius: 999px; background: var(--blue-tint); color: var(--blue-deep); font-size: 11px; font-style: normal; font-weight: 600; white-space: nowrap; }
+.vg-card em { width: fit-content; padding: 2px 7px; border-radius: 999px; background: var(--blue-tint); color: var(--blue-deep); font-size: 12px; font-style: normal; font-weight: 600; white-space: nowrap; }
 .vg-card em.is-ok { background: #dcefe1; color: #1f6636; }
 @container (max-width: 450px) {
   .vg-columns { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s1); }
   .vg-col { padding: 6px; }
   .vg-col:first-child { display: none; }
   .vg-card, .vg-card.is-active { padding: 0 var(--s1); }
-  .vg-card em { font-size: 12px; }
   .vg-board .vg-mover { --hop: 20px; }
 }
 @supports not (container-type: inline-size) {
