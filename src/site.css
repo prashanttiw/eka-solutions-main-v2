@@ -771,7 +771,7 @@ main[id], section[id] { scroll-margin-top: 104px; }
   .form-pair { grid-template-columns: 1fr; }
   .closing-card { padding: 32px 22px; border-radius: 24px; }
   .closing-actions .btn { width: 100%; justify-content: space-between; }
-  .site-footer { padding-bottom: 88px; border-radius: 24px 24px 0 0; }
+  .site-footer { padding-bottom: var(--s4); border-radius: 24px 24px 0 0; }
   .footer-main { grid-template-columns: 1fr 1fr; gap: 32px 20px; }
   .footer-main > div:last-child { grid-column: 1 / -1; }
   .footer-bottom { flex-direction: column; }
