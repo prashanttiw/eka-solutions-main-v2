@@ -78,6 +78,8 @@ p { margin: 0; }
 h1, h2, h3 { margin: 0; }
 ::selection { background: var(--blue); color: #fff; }
 :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 4px; }
+/* On navy and blue grounds the blue ring disappears; use white there. */
+.announce:focus-visible, .band-ink :focus-visible, .closing-card :focus-visible, .site-footer :focus-visible { outline-color: #fff; }
 main[id], section[id] { scroll-margin-top: 104px; }
 .page-fallback { min-height: 100svh; }
 .wrap { width: min(calc(100% - var(--gutter) * 2), var(--wrap)); margin-inline: auto; }
@@ -637,7 +639,6 @@ main[id], section[id] { scroll-margin-top: 104px; }
 .band-ink .h-section { color: #fff; }
 .band-ink .text-link { color: #fff; }
 .band-ink .text-link:hover { color: var(--sky); }
-.band-ink :focus-visible { outline-color: var(--sky); }
 .band-label { display: inline-flex; align-items: center; gap: 10px; margin-bottom: var(--s3); color: var(--sky); font-size: 14px; font-weight: 600; }
 .band-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: #5fd08c; }
 .founding-band { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: end; gap: var(--s6) clamp(48px, 7vw, 112px); }
