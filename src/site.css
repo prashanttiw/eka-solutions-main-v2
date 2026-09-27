@@ -287,7 +287,7 @@ main[id], section[id] { scroll-margin-top: 104px; }
 
 /* Board */
 .vg-columns { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
-.vg-col { display: grid; align-content: start; gap: 8px; padding: 10px; border-radius: 10px; background: #f5f3ee; }
+.vg-col { display: grid; grid-template-columns: minmax(0, 1fr); align-content: start; gap: 8px; padding: 10px; border-radius: 10px; background: #f5f3ee; }
 .vg-col p { display: flex; justify-content: space-between; color: var(--ink-2); font-size: 12px; font-weight: 600; }
 .vg-col p .vg-swap { color: var(--ink-3); font-weight: 500; }
 .vg-col p > span:not(.vg-swap) { color: var(--ink-3); font-weight: 500; }
@@ -313,7 +313,7 @@ main[id], section[id] { scroll-margin-top: 104px; }
 .vg-live i::after { content: ''; position: absolute; inset: 0; border-radius: 50%; background: #2f8f55; opacity: 0; }
 .vg-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 0; }
 .vg-stats div { padding: 10px; border-radius: 10px; background: #f5f3ee; }
-.vg-stats dt { color: var(--ink-3); font-size: 11px; }
+.vg-stats dt { color: var(--ink-3); font-size: 12px; }
 .vg-stats dd { margin: 2px 0 0; font-size: 15px; font-weight: 600; font-variant-numeric: tabular-nums; }
 .vg-stats .vg-swap { justify-items: start; }
 
@@ -682,10 +682,16 @@ main[id], section[id] { scroll-margin-top: 104px; }
   .footer-main { grid-template-columns: 1fr 1fr; gap: 32px 20px; }
   .footer-main > div:last-child { grid-column: 1 / -1; }
   .footer-bottom { flex-direction: column; }
-  .vg-columns { gap: 6px; }
-  .vg-col { padding: 7px; }
-  .vg-card { padding: 0 7px; font-size: 11px; }
+  /* Board: a phone only has room for the two columns the story needs (Review → Done), so
+     labels stay whole and the moving card never spills over the next column. */
+  .vg-body { padding: 14px; }
+  .vg-columns { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s1); }
+  .vg-col { padding: 6px; }
+  .vg-col:first-child { display: none; }
+  .vg-card { padding: 0 var(--s1); font-size: 12px; }
+  .vg-card em { font-size: 12px; }
   .vg-board .vg-mover { --hop: 20px; }
+  .chapter-visual { padding: 12px; border-radius: 20px; }
   .role-row { padding: 16px 16px 16px 18px; }
   .scope-strip { gap: 10px 18px; font-size: 14px; }
 }
