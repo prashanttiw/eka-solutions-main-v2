@@ -233,15 +233,22 @@ main[id], section[id] { scroll-margin-top: 104px; }
 .voice-under { max-width: 52ch; color: var(--ink-2); font-size: 16px; line-height: 1.55; }
 .voice-under span { color: var(--blue); font-weight: 600; }
 
-.service-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-.service-card { display: flex; flex-direction: column; gap: 26px; padding: 12px 12px 26px; background: var(--paper-raised); border: 1px solid var(--line); border-radius: 24px; text-decoration: none; transition: border-color .25s var(--ease), box-shadow .25s var(--ease), transform .25s var(--ease); }
-.service-card:hover .vg-stage { border-color: var(--blue); }
-.service-card:hover { border-color: var(--line-strong); box-shadow: 0 18px 40px -28px rgba(11, 26, 51, .45); transform: translateY(-2px); }
-.service-card-copy { padding: 0 14px; display: grid; gap: 10px; }
-.service-card-copy p { max-width: 46ch; color: var(--ink-2); font-size: 16px; line-height: 1.6; }
-.service-card-more { display: inline-flex; align-items: center; gap: 8px; margin-top: 8px; color: var(--blue); font-size: 15px; font-weight: 600; }
-.arrow-nudge { transition: transform .3s var(--ease); }
-.service-card:hover .arrow-nudge { transform: translateX(4px); }
+/* Services: four ways into one project, drawn as one framed object. The cells share hairlines
+   (the frame's background showing through a 1px gap) instead of floating as separate cards,
+   and subgrid rows keep the four titles on two shared baselines. */
+.service-frame { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; overflow: hidden; border: 1px solid var(--line-strong); border-radius: 24px; background: var(--line-strong); }
+.service-cell { grid-row: span 2; display: grid; grid-template-rows: subgrid; color: inherit; text-decoration: none; }
+.service-cell:focus-visible { outline: 2px solid var(--blue); outline-offset: -6px; border-radius: 22px; }
+.service-art { display: grid; place-items: center; padding: clamp(24px, 3.4vw, 48px); background: radial-gradient(circle, rgba(18, 38, 74, .14) 1px, transparent 1.4px) 0 0 / 16px 16px, var(--paper-sunken); }
+.service-art .vg { width: 100%; max-width: 480px; min-height: 250px; transition: transform .35s var(--ease); }
+.service-cell:hover .service-art .vg { transform: translateY(-3px); }
+.service-copy { display: grid; align-content: start; gap: var(--s1); padding: var(--s3) clamp(24px, 3vw, 40px) var(--s4); background: var(--paper-raised); transition: background-color .25s var(--ease); }
+.service-cell:hover .service-copy { background: #fff; }
+.service-copy p { max-width: 46ch; color: var(--ink-2); font-size: 16px; line-height: 1.6; }
+.service-more { display: inline-flex; align-items: center; gap: var(--s1); margin-top: var(--s1); color: var(--blue); font-size: 15px; font-weight: 600; }
+.service-more .icon { transition: transform .3s var(--ease); }
+.service-cell:hover .service-more .icon { transform: translateX(4px); }
+.swipe-hint { display: none; }
 
 .move-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 0 0 44px; padding: 0; list-style: none; counter-reset: move; }
 .move { position: relative; display: flex; flex-direction: column; padding: 28px; border-radius: var(--radius); background: var(--paper-raised); border: 1px solid var(--line); }
@@ -261,7 +268,6 @@ main[id], section[id] { scroll-margin-top: 104px; }
 
 /* ---------- Vignettes ---------- */
 .vg { position: relative; overflow: hidden; border: 1px solid var(--line); border-radius: 14px; background: #fff; box-shadow: 0 1px 0 rgba(18, 38, 74, .04), 0 18px 36px -24px rgba(11, 26, 51, .4); font-family: var(--sans); color: var(--ink); user-select: none; }
-.service-card .vg { min-height: 250px; }
 .vg-bar { display: flex; align-items: center; gap: 6px; padding: 10px 14px; border-bottom: 1px solid var(--line); background: #f8f7f3; }
 .vg-bar i { width: 8px; height: 8px; border-radius: 50%; background: #dcd8cd; }
 .vg-bar span { margin-left: 10px; color: var(--ink-3); font-size: 12px; }
@@ -332,7 +338,6 @@ main[id], section[id] { scroll-margin-top: 104px; }
   }
 }
 
-
 /* Assist */
 .vg-draft { display: grid; gap: 8px; padding: 14px; border-radius: 10px; background: #f5f3ee; }
 .vg-draft i { height: 8px; border-radius: 4px; background: #d9d6cd; transform-origin: left center; }
@@ -352,8 +357,6 @@ main[id], section[id] { scroll-margin-top: 104px; }
 .vg-stats dd { margin: 2px 0 0; font-size: 15px; font-weight: 600; font-variant-numeric: tabular-nums; }
 .vg-stats .vg-swap { justify-items: start; }
 
-/* Illustration stage: a dotted canvas with a dashed edge, like an artboard. */
-.vg-stage { padding: clamp(18px, 3vw, 32px); border: 1px dashed var(--line-strong); transition: border-color .25s var(--ease); border-radius: 18px; background: radial-gradient(circle, rgba(18, 38, 74, .16) 1px, transparent 1.4px) 0 0 / 16px 16px, var(--paper-sunken); }
 
 /* ---------- Illustration motion ----------
    Loops are CSS keyframes on transform and opacity, so the compositor does the work.
@@ -689,7 +692,14 @@ main[id], section[id] { scroll-margin-top: 104px; }
   .included-list { grid-template-columns: 1fr; }
   .included-list li, .included-list li:nth-child(n+4) { grid-column: auto; }
   .voice-quote { font-size: clamp(24px, 6.6vw, 30px); }
-  .service-cards { grid-template-columns: 1fr; }
+  .service-frame { display: flex; gap: 12px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter); margin-inline: calc(var(--gutter) * -1); padding: 0 var(--gutter) 4px; border: 0; border-radius: 0; background: none; scrollbar-width: none; }
+  .service-frame::-webkit-scrollbar { display: none; }
+  .service-frame::after { content: ''; flex: 0 0 1px; }
+  .service-cell { flex: 0 0 90%; display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--line-strong); border-radius: 20px; scroll-snap-align: start; }
+  .service-cell:focus-visible { border-radius: 18px; }
+  .service-art { flex: 1; padding: 12px; border-bottom: 1px solid var(--line); }
+  .service-copy { padding: var(--s2) var(--s3) var(--s3); }
+  .swipe-hint { display: flex; align-items: center; justify-content: flex-end; gap: var(--s1); margin-top: var(--s2); color: var(--ink-3); font-size: 14px; font-weight: 500; }
   .move { display: flex; align-items: stretch; }
   .move-index { margin-bottom: 24px; }
   .move-text { margin-top: 10px; }

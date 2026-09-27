@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button, ClosingCta, Eyebrow, TextLink } from '../components/ui';
+import { Arrow, Button, ClosingCta, Eyebrow, TextLink } from '../components/ui';
 import { VIGNETTES } from '../components/vignetteList';
 import FoundingPlaces from '../components/FoundingPlaces';
 import { FOUNDING } from '../lib/founding';
@@ -122,27 +122,26 @@ export default function HomePage() {
       <section className="section tone-sunken" aria-labelledby="build-title">
         <div className="wrap">
           <div className="split-head">
-            <div>
-              <Eyebrow>What we build</Eyebrow>
-              <h2 id="build-title" className="h-section">Four ways in. Often one project.</h2>
-            </div>
+            <h2 id="build-title" className="h-section">Four ways in. Often one project.</h2>
             <p className="body">Problems rarely arrive in neat categories. A customer portal usually needs a better process behind it, and both need a platform that holds up.</p>
           </div>
-          <div className="service-cards">
+          {/* One frame, four cells that share their edges: the layout says "one project". */}
+          <div className="service-frame">
             {SERVICES.map((service, index) => {
               const Vignette = VIGNETTES[index];
               return (
-                <Link className="service-card" key={service.id} to={`/services#${service.id}`}>
-                  <div className="vg-stage"><Vignette /></div>
-                  <div className="service-card-copy">
+                <Link className="service-cell" key={service.id} to={`/services#${service.id}`}>
+                  <div className="service-art"><Vignette /></div>
+                  <div className="service-copy">
                     <h3 className="h-card">{service.title}</h3>
                     <p>{service.short}</p>
-                    <span className="service-card-more">Explore {service.name}<span className="arrow-nudge" aria-hidden="true">→</span></span>
+                    <span className="service-more">Explore {service.name}<Arrow dir="right" /></span>
                   </div>
                 </Link>
               );
             })}
           </div>
+          <p className="swipe-hint" aria-hidden="true">Swipe to see all four<Arrow dir="right" /></p>
         </div>
       </section>
 
